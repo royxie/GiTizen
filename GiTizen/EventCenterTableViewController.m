@@ -174,6 +174,7 @@
      @"category" : @"travel",     
      };
     
+    
     Event* eventToPost;
     
     [[RKObjectManager sharedManager]    postObject:eventToPost
