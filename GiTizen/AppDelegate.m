@@ -22,6 +22,7 @@
     
     // Initialize RestKit
     RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
+    objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
     NSURL *modelURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"GiTizen" ofType:@"momd"]];
     
     //Iniitalize CoreData with RestKit
@@ -47,7 +48,7 @@
                                                        @"g_loc_addr" : @"g_loc_addr",
                                                        @"starttime" : @"starttime",
                                                        @"category" : @"category",
-                                                       @"_id" : @"object_id",
+                                                       @"_id" : @"object_id",    // server side: _id; ios side: object_id
                                                        @"number_of_peo" : @"number_of_peo",
                                                        @"number_joined" : @"number_joined"
                                                        }];
@@ -70,6 +71,9 @@
                                                                                            keyPath:nil
                                                                                        statusCodes:[NSIndexSet indexSetWithIndex:200]];
     [objectManager addResponseDescriptor:responseDescriptor];
+    
+    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:[eventMapping inverseMapping] objectClass:[Event class] rootKeyPath:nil method:RKRequestMethodPOST];
+    [objectManager addRequestDescriptor:requestDescriptor];
     
     return YES;
 }

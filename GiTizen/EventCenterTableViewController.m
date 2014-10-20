@@ -16,6 +16,7 @@
 @interface EventCenterTableViewController ()
 
 @property (strong, nonatomic) NSArray *events;
+//@property (strong, nonatomic) Event *eventToPost;
 @property (strong, nonatomic) EventCenterTableViewCell *eventCell;
 
 @end
@@ -25,6 +26,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh)forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
+    
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filterEvents)];
     self.navigationItem.leftBarButtonItem = leftButton;
     
@@ -32,6 +37,19 @@
     self.navigationItem.rightBarButtonItem = rightButton;
     
     [self loadEvents];
+}
+
+- (void) filterEvents {
+    
+}
+
+- (void) postNewEvents {
+    [self performSegueWithIdentifier:@"post" sender:nil];
+}
+
+- (void) refresh {
+    [self loadEvents];
+    [self.refreshControl endRefreshing];
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -165,46 +183,5 @@
                                                   NSLog(@"error occurred': %@", error);
                                               }];
 }
-
--(void)postEvents
-{
-     NSDictionary *queryParams = @{@"g_loc_name" : @"sxie40",
-     @"starttime" : @"gatech",
-     @"num_of_peo" : @"10am",
-     @"category" : @"travel",     
-     };
-    
-    
-    Event* eventToPost;
-    
-    [[RKObjectManager sharedManager]    postObject:eventToPost
-                                              path:@"/api/events"
-                                        parameters:queryParams
-                                           success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                               self.events = mappingResult.array;
-                                               [self.tableView reloadData];
-                                           }
-                                           failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                                               NSLog(@"error occurred': %@", error);
-                                           }];
-}
-/*
-- (void)postObject:(id)object
-              path:(NSString *)path
-        parameters:(NSDictionary *)parameters
-           success:(void (^)(RKObjectRequestOperation *operation, RKMappingResult *mappingResult))success
-           failure:(void (^)(RKObjectRequestOperation *operation, NSError *error))failure
-{
-    NSAssert(object || path, @"Cannot make a request without an object or a path.");
-    RKObjectRequestOperation *operation = [self appropriateObjectRequestOperationWithObject:object method:RKRequestMethodPOST path:path parameters:parameters];
-    [operation setCompletionBlockWithSuccess:success failure:failure];
-    [self enqueueObjectRequestOperation:operation];
-}
-*/
-
-- (IBAction)refresh:(id)sender {
-    [self loadEvents];
-}
-
 
 @end

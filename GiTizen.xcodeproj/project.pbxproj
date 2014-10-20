@@ -11,7 +11,6 @@
 		427C64C419F37A240067F2E4 /* EventCenterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C64C319F37A240067F2E4 /* EventCenterTableViewController.m */; };
 		C913E95919F4454C007A329C /* EventCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C913E95719F4454C007A329C /* EventCenterTableViewCell.m */; };
 		C913E95D19F45AE1007A329C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C913E95C19F45AE1007A329C /* DetailViewController.m */; };
-		C913E96019F489F0007A329C /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C913E95F19F489F0007A329C /* Event.m */; };
 		C9325F1919F49FFC00DD6D0F /* EventCenterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C913E95819F4454C007A329C /* EventCenterTableViewCell.xib */; };
 		C9325F1B19F4A18000DD6D0F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9325F1A19F4A18000DD6D0F /* Info.plist */; };
 		C98A1C7D19F372D90067D85F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1C7C19F372D90067D85F /* main.m */; };
@@ -22,6 +21,8 @@
 		C98A1C8B19F372D90067D85F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C98A1C8A19F372D90067D85F /* Images.xcassets */; };
 		C98A1C8E19F372D90067D85F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98A1C8C19F372D90067D85F /* LaunchScreen.xib */; };
 		C98A1C9A19F372D90067D85F /* GiTizenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1C9919F372D90067D85F /* GiTizenTests.m */; };
+		C9C71B9519F4CCE600557A49 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C71B9419F4CCE600557A49 /* Event.m */; };
+		C9C71B9819F4E13900557A49 /* PostEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C71B9719F4E13900557A49 /* PostEventViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +44,6 @@
 		C913E95819F4454C007A329C /* EventCenterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCenterTableViewCell.xib; sourceTree = "<group>"; };
 		C913E95B19F45AE1007A329C /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		C913E95C19F45AE1007A329C /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		C913E95E19F489F0007A329C /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
-		C913E95F19F489F0007A329C /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C9325F1A19F4A18000DD6D0F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C98A1C7719F372D90067D85F /* GiTizen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiTizen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98A1C7C19F372D90067D85F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -59,6 +58,10 @@
 		C98A1C9319F372D90067D85F /* GiTizenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiTizenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98A1C9819F372D90067D85F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C98A1C9919F372D90067D85F /* GiTizenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GiTizenTests.m; sourceTree = "<group>"; };
+		C9C71B9319F4CCE600557A49 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		C9C71B9419F4CCE600557A49 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		C9C71B9619F4E13900557A49 /* PostEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostEventViewController.h; sourceTree = "<group>"; };
+		C9C71B9719F4E13900557A49 /* PostEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostEventViewController.m; sourceTree = "<group>"; };
 		DD80C2108BB3BFD5715A8598 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EC48A2D77F59DE828AC92C1A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,6 +125,8 @@
 		C98A1C7919F372D90067D85F /* GiTizen */ = {
 			isa = PBXGroup;
 			children = (
+				C9C71B9619F4E13900557A49 /* PostEventViewController.h */,
+				C9C71B9719F4E13900557A49 /* PostEventViewController.m */,
 				C913E95B19F45AE1007A329C /* DetailViewController.h */,
 				C913E95C19F45AE1007A329C /* DetailViewController.m */,
 				427C64C219F37A240067F2E4 /* EventCenterTableViewController.h */,
@@ -138,8 +143,8 @@
 				C913E95619F4454C007A329C /* EventCenterTableViewCell.h */,
 				C913E95719F4454C007A329C /* EventCenterTableViewCell.m */,
 				C913E95819F4454C007A329C /* EventCenterTableViewCell.xib */,
-				C913E95E19F489F0007A329C /* Event.h */,
-				C913E95F19F489F0007A329C /* Event.m */,
+				C9C71B9319F4CCE600557A49 /* Event.h */,
+				C9C71B9419F4CCE600557A49 /* Event.m */,
 			);
 			path = GiTizen;
 			sourceTree = "<group>";
@@ -311,7 +316,8 @@
 				C98A1C8019F372D90067D85F /* AppDelegate.m in Sources */,
 				C913E95919F4454C007A329C /* EventCenterTableViewCell.m in Sources */,
 				C913E95D19F45AE1007A329C /* DetailViewController.m in Sources */,
-				C913E96019F489F0007A329C /* Event.m in Sources */,
+				C9C71B9819F4E13900557A49 /* PostEventViewController.m in Sources */,
+				C9C71B9519F4CCE600557A49 /* Event.m in Sources */,
 				C98A1C7D19F372D90067D85F /* main.m in Sources */,
 				C98A1C8619F372D90067D85F /* ViewController.m in Sources */,
 				C98A1C8319F372D90067D85F /* GiTizen.xcdatamodeld in Sources */,
