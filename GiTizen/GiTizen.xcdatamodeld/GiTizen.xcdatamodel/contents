@@ -7,11 +7,12 @@
         <attribute name="g_loc_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="g_loc_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gtid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="number_joined" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number_of_peo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="object_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="starttime" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Event" positionX="-63" positionY="-18" width="128" height="195"/>
     </elements>
 </model>
