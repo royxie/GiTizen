@@ -14,5 +14,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *addrLabel;
 @property (strong, nonatomic) IBOutlet UILabel *tsLabel;
 @property (strong, nonatomic) IBOutlet UILabel *npLabel;
+@property (strong, nonatomic) IBOutlet UILabel *njLabel;
 
 @end

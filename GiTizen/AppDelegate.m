@@ -22,6 +22,7 @@
     
     // Initialize RestKit
     RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
+    objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
     NSURL *modelURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"GiTizen" ofType:@"momd"]];
     
     //Iniitalize CoreData with RestKit
@@ -29,7 +30,7 @@
     RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
     NSError *error = nil;
     
-    NSString *path = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"gitizen.sqlite"];
+    NSString *path = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"GiTizen.sqlite"];
     NSLog(@"%@", path);
     objectManager.managedObjectStore = managedObjectStore;
     
@@ -38,8 +39,8 @@
     [objectManager.managedObjectStore createManagedObjectContexts];
     
     
-    RKEntityMapping *pizzaMapping = [RKEntityMapping mappingForEntityForName:@"Event" inManagedObjectStore:managedObjectStore];
-    [pizzaMapping addAttributeMappingsFromDictionary:@{
+    RKEntityMapping *eventMapping = [RKEntityMapping mappingForEntityForName:@"Event" inManagedObjectStore:managedObjectStore];
+    [eventMapping addAttributeMappingsFromDictionary:@{
                                                        @"gtid" : @"gtid",
                                                        @"g_loc_icon" : @"g_loc_icon",
                                                        @"g_loc_id" : @"g_loc_id",
@@ -47,8 +48,9 @@
                                                        @"g_loc_addr" : @"g_loc_addr",
                                                        @"starttime" : @"starttime",
                                                        @"category" : @"category",
-                                                       @"_id" : @"object_id",
-                                                       @"number_of_peo" : @"number_of_peo"
+                                                       @"_id" : @"object_id",    // server side: _id; ios side: object_id
+                                                       @"number_of_peo" : @"number_of_peo",
+                                                       @"number_joined" : @"number_joined"
                                                        }];
     /*
     "number_of_peo": "5",
@@ -63,12 +65,15 @@
      */
     
     // Register our mappings with the provider
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:pizzaMapping
+    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:eventMapping
                                                                                             method:RKRequestMethodGET
                                                                                        pathPattern:@"/api/events"
                                                                                            keyPath:nil
                                                                                        statusCodes:[NSIndexSet indexSetWithIndex:200]];
     [objectManager addResponseDescriptor:responseDescriptor];
+    
+    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:[eventMapping inverseMapping] objectClass:[Event class] rootKeyPath:nil method:RKRequestMethodPOST];
+    [objectManager addRequestDescriptor:requestDescriptor];
     
     return YES;
 }

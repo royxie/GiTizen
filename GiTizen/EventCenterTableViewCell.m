@@ -10,7 +10,7 @@
 
 @implementation EventCenterTableViewCell
 
-@synthesize locLabel,categoryLabel,tsLabel,addrLabel,npLabel;
+@synthesize locLabel,categoryLabel,tsLabel,addrLabel,npLabel,njLabel;
 
 - (void)awakeFromNib {
     // Initialization code

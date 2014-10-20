@@ -16,6 +16,7 @@
 @interface EventCenterTableViewController ()
 
 @property (strong, nonatomic) NSArray *events;
+//@property (strong, nonatomic) Event *eventToPost;
 @property (strong, nonatomic) EventCenterTableViewCell *eventCell;
 
 @end
@@ -24,6 +25,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh)forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
     
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filterEvents)];
     self.navigationItem.leftBarButtonItem = leftButton;
@@ -42,49 +47,76 @@
     [self performSegueWithIdentifier:@"post" sender:nil];
 }
 
+- (void) refresh {
+    [self loadEvents];
+    [self.refreshControl endRefreshing];
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    /*
     if (self) {
-        self.eventCell = [[[NSBundle mainBundle] loadNibNamed:@"EventCenterTableViewCell" owner:self options:nil] lastObject];
+        // Custom initialization
     }
-     */
     return self;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
-
-
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView { return 1;}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+#warning Potentially incomplete method implementation.
+    // Return the number of sections.
+    return 1;
+}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {return self.events.count;}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    return self.events.count;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.eventCell = [tableView dequeueReusableCellWithIdentifier:@"EventCenterTableViewCell"];
+    self.eventCell = [tableView dequeueReusableCellWithIdentifier:@"EventCenterTableViewCell"];// forIndexPath:indexPath];
+    
     self.eventCell = [[[NSBundle mainBundle] loadNibNamed:@"EventCenterTableViewCell" owner:self options:nil] lastObject];
+
     [self configureCell:self.eventCell atIndexPath:indexPath];
+    
     return self.eventCell;
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Event *event = self.events[indexPath.row];
+    
     self.eventCell.categoryLabel.text = event.category;
     self.eventCell.locLabel.text = event.g_loc_name;
     self.eventCell.tsLabel.text = event.starttime;
     self.eventCell.addrLabel.text = event.g_loc_addr;
     self.eventCell.npLabel.text = event.number_of_peo;
+    self.eventCell.njLabel.text = event.number_joined;
+    //NSLog(@"event is: %@",event);
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.eventCell = (EventCenterTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+    self.eventCell = [tableView cellForRowAtIndexPath:indexPath];
+    
     [self performSegueWithIdentifier:@"eventDetail" sender:nil];
+    
+    /*
+    //allocate your view controller
+    DetailViewController *detailedViewController = [[DetailViewController alloc] init];
+    
+    //push it to the navigationController
+    [[self navigationController] pushViewController:detailedViewController animated:YES];
+    //[detailedViewController setDetailItem: self.eventCell];
+     */
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -93,13 +125,6 @@
         Event *selectedEvent = self.events[indexPath.row];
         [[segue destinationViewController] setDetailItem:selectedEvent];
     }
-    else if ([[segue identifier] isEqualToString:@"post"]) {
-        
-    }
-}
-
-- (IBAction)refresh:(id)sender {
-    [self loadEvents];
 }
 
 /*
@@ -148,12 +173,6 @@
 
 -(void)loadEvents
 {
-    /*
-    NSDictionary *queryParams = @{@"gtid" : @"sxie40",
-                                  @"location" : @"gatech",
-                                  @"ts" : @"10am",
-                                  @"category" : @"travel"};
-     */
     [[RKObjectManager sharedManager] getObjectsAtPath:@"/api/events"
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
@@ -164,11 +183,5 @@
                                                   NSLog(@"error occurred': %@", error);
                                               }];
 }
-
-/*
-- (IBAction)refresh:(id)sender {
-    [self loadEvents];
-}
- */
 
 @end
