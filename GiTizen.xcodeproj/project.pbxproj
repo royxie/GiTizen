@@ -13,6 +13,14 @@
 		C913E95D19F45AE1007A329C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C913E95C19F45AE1007A329C /* DetailViewController.m */; };
 		C9325F1919F49FFC00DD6D0F /* EventCenterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C913E95819F4454C007A329C /* EventCenterTableViewCell.xib */; };
 		C9325F1B19F4A18000DD6D0F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9325F1A19F4A18000DD6D0F /* Info.plist */; };
+		C936155919F58B6D003AB5B8 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = C936154C19F58B6D003AB5B8 /* Constants.m */; };
+		C936155A19F58B6D003AB5B8 /* JSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C936154E19F58B6D003AB5B8 /* JSONParser.m */; };
+		C936155B19F58B6D003AB5B8 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = C936155019F58B6D003AB5B8 /* Place.m */; };
+		C936155C19F58B6D003AB5B8 /* PlaceOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = C936155219F58B6D003AB5B8 /* PlaceOptions.m */; };
+		C936155D19F58B6D003AB5B8 /* PlacesClient.m in Sources */ = {isa = PBXBuildFile; fileRef = C936155419F58B6D003AB5B8 /* PlacesClient.m */; };
+		C936155E19F58B6D003AB5B8 /* PlacesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C936155619F58B6D003AB5B8 /* PlacesRequest.m */; };
+		C936155F19F58B6D003AB5B8 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = C936155819F58B6D003AB5B8 /* Request.m */; };
+		C936156219F58D32003AB5B8 /* PlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C936156119F58D32003AB5B8 /* PlacesViewController.m */; };
 		C98A1C7D19F372D90067D85F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1C7C19F372D90067D85F /* main.m */; };
 		C98A1C8019F372D90067D85F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1C7F19F372D90067D85F /* AppDelegate.m */; };
 		C98A1C8319F372D90067D85F /* GiTizen.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C98A1C8119F372D90067D85F /* GiTizen.xcdatamodeld */; };
@@ -45,6 +53,22 @@
 		C913E95B19F45AE1007A329C /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		C913E95C19F45AE1007A329C /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		C9325F1A19F4A18000DD6D0F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C936154B19F58B6D003AB5B8 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		C936154C19F58B6D003AB5B8 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		C936154D19F58B6D003AB5B8 /* JSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONParser.h; sourceTree = "<group>"; };
+		C936154E19F58B6D003AB5B8 /* JSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONParser.m; sourceTree = "<group>"; };
+		C936154F19F58B6D003AB5B8 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		C936155019F58B6D003AB5B8 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		C936155119F58B6D003AB5B8 /* PlaceOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceOptions.h; sourceTree = "<group>"; };
+		C936155219F58B6D003AB5B8 /* PlaceOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceOptions.m; sourceTree = "<group>"; };
+		C936155319F58B6D003AB5B8 /* PlacesClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesClient.h; sourceTree = "<group>"; };
+		C936155419F58B6D003AB5B8 /* PlacesClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesClient.m; sourceTree = "<group>"; };
+		C936155519F58B6D003AB5B8 /* PlacesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesRequest.h; sourceTree = "<group>"; };
+		C936155619F58B6D003AB5B8 /* PlacesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesRequest.m; sourceTree = "<group>"; };
+		C936155719F58B6D003AB5B8 /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
+		C936155819F58B6D003AB5B8 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
+		C936156019F58D32003AB5B8 /* PlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesViewController.h; sourceTree = "<group>"; };
+		C936156119F58D32003AB5B8 /* PlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesViewController.m; sourceTree = "<group>"; };
 		C98A1C7719F372D90067D85F /* GiTizen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiTizen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98A1C7C19F372D90067D85F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C98A1C7E19F372D90067D85F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -125,12 +149,28 @@
 		C98A1C7919F372D90067D85F /* GiTizen */ = {
 			isa = PBXGroup;
 			children = (
+				C936154B19F58B6D003AB5B8 /* Constants.h */,
+				C936154C19F58B6D003AB5B8 /* Constants.m */,
+				C936154D19F58B6D003AB5B8 /* JSONParser.h */,
+				C936154E19F58B6D003AB5B8 /* JSONParser.m */,
+				C936154F19F58B6D003AB5B8 /* Place.h */,
+				C936155019F58B6D003AB5B8 /* Place.m */,
+				C936155119F58B6D003AB5B8 /* PlaceOptions.h */,
+				C936155219F58B6D003AB5B8 /* PlaceOptions.m */,
+				C936155319F58B6D003AB5B8 /* PlacesClient.h */,
+				C936155419F58B6D003AB5B8 /* PlacesClient.m */,
+				C936155519F58B6D003AB5B8 /* PlacesRequest.h */,
+				C936155619F58B6D003AB5B8 /* PlacesRequest.m */,
+				C936155719F58B6D003AB5B8 /* Request.h */,
+				C936155819F58B6D003AB5B8 /* Request.m */,
 				C9C71B9619F4E13900557A49 /* PostEventViewController.h */,
 				C9C71B9719F4E13900557A49 /* PostEventViewController.m */,
-				C913E95B19F45AE1007A329C /* DetailViewController.h */,
-				C913E95C19F45AE1007A329C /* DetailViewController.m */,
+				C936156019F58D32003AB5B8 /* PlacesViewController.h */,
+				C936156119F58D32003AB5B8 /* PlacesViewController.m */,
 				427C64C219F37A240067F2E4 /* EventCenterTableViewController.h */,
 				427C64C319F37A240067F2E4 /* EventCenterTableViewController.m */,
+				C913E95B19F45AE1007A329C /* DetailViewController.h */,
+				C913E95C19F45AE1007A329C /* DetailViewController.m */,
 				C98A1C7E19F372D90067D85F /* AppDelegate.h */,
 				C98A1C7F19F372D90067D85F /* AppDelegate.m */,
 				C98A1C8419F372D90067D85F /* ViewController.h */,
@@ -315,10 +355,18 @@
 				427C64C419F37A240067F2E4 /* EventCenterTableViewController.m in Sources */,
 				C98A1C8019F372D90067D85F /* AppDelegate.m in Sources */,
 				C913E95919F4454C007A329C /* EventCenterTableViewCell.m in Sources */,
+				C936155B19F58B6D003AB5B8 /* Place.m in Sources */,
+				C936155C19F58B6D003AB5B8 /* PlaceOptions.m in Sources */,
 				C913E95D19F45AE1007A329C /* DetailViewController.m in Sources */,
+				C936155E19F58B6D003AB5B8 /* PlacesRequest.m in Sources */,
+				C936155D19F58B6D003AB5B8 /* PlacesClient.m in Sources */,
+				C936156219F58D32003AB5B8 /* PlacesViewController.m in Sources */,
 				C9C71B9819F4E13900557A49 /* PostEventViewController.m in Sources */,
+				C936155919F58B6D003AB5B8 /* Constants.m in Sources */,
+				C936155A19F58B6D003AB5B8 /* JSONParser.m in Sources */,
 				C9C71B9519F4CCE600557A49 /* Event.m in Sources */,
 				C98A1C7D19F372D90067D85F /* main.m in Sources */,
+				C936155F19F58B6D003AB5B8 /* Request.m in Sources */,
 				C98A1C8619F372D90067D85F /* ViewController.m in Sources */,
 				C98A1C8319F372D90067D85F /* GiTizen.xcdatamodeld in Sources */,
 			);

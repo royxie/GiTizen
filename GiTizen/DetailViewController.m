@@ -10,6 +10,13 @@
 
 @interface DetailViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *catText;
+@property (weak, nonatomic) IBOutlet UITextField *nameText;
+@property (weak, nonatomic) IBOutlet UITextField *timeText;
+@property (weak, nonatomic) IBOutlet UITextField *capText;
+@property (weak, nonatomic) IBOutlet UITextView *addrTextView;
+@property (weak, nonatomic) IBOutlet UITextView *desTextView;
+
 @end
 
 @implementation DetailViewController
@@ -28,7 +35,12 @@
 - (void)configureView {
     // Update the user interface for the detail item.
     if (self.detailItem) {
-        self.detailDescriptionLabel.text = self.detailItem.category;
+        self.catText.text = self.detailItem.category;
+        self.nameText.text = self.detailItem.g_loc_name;
+        self.timeText.text = self.detailItem.starttime;
+        self.capText.text = self.detailItem.number_of_peo;
+        self.addrTextView.text = self.detailItem.g_loc_addr;
+        self.desTextView.text = @"Follow me !!!";
     }
 }
 
