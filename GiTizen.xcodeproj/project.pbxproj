@@ -21,6 +21,7 @@
 		C936155E19F58B6D003AB5B8 /* PlacesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C936155619F58B6D003AB5B8 /* PlacesRequest.m */; };
 		C936155F19F58B6D003AB5B8 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = C936155819F58B6D003AB5B8 /* Request.m */; };
 		C936156219F58D32003AB5B8 /* PlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C936156119F58D32003AB5B8 /* PlacesViewController.m */; };
+		C9525C6419F63E3700E80F9D /* PhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9525C6319F63E3700E80F9D /* PhotoTableViewCell.m */; };
 		C98A1C7D19F372D90067D85F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1C7C19F372D90067D85F /* main.m */; };
 		C98A1C8019F372D90067D85F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1C7F19F372D90067D85F /* AppDelegate.m */; };
 		C98A1C8319F372D90067D85F /* GiTizen.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C98A1C8119F372D90067D85F /* GiTizen.xcdatamodeld */; };
@@ -31,6 +32,7 @@
 		C98A1C9A19F372D90067D85F /* GiTizenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1C9919F372D90067D85F /* GiTizenTests.m */; };
 		C9C71B9519F4CCE600557A49 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C71B9419F4CCE600557A49 /* Event.m */; };
 		C9C71B9819F4E13900557A49 /* PostEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C71B9719F4E13900557A49 /* PostEventViewController.m */; };
+		C9C8598819F6AEA600093ACF /* DetailGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C8598719F6AEA600093ACF /* DetailGViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		C936155819F58B6D003AB5B8 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		C936156019F58D32003AB5B8 /* PlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesViewController.h; sourceTree = "<group>"; };
 		C936156119F58D32003AB5B8 /* PlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesViewController.m; sourceTree = "<group>"; };
+		C9525C6219F63E3700E80F9D /* PhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTableViewCell.h; sourceTree = "<group>"; };
+		C9525C6319F63E3700E80F9D /* PhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTableViewCell.m; sourceTree = "<group>"; };
 		C98A1C7719F372D90067D85F /* GiTizen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiTizen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98A1C7C19F372D90067D85F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C98A1C7E19F372D90067D85F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 		C9C71B9419F4CCE600557A49 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C9C71B9619F4E13900557A49 /* PostEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostEventViewController.h; sourceTree = "<group>"; };
 		C9C71B9719F4E13900557A49 /* PostEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostEventViewController.m; sourceTree = "<group>"; };
+		C9C8598619F6AEA600093ACF /* DetailGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailGViewController.h; sourceTree = "<group>"; };
+		C9C8598719F6AEA600093ACF /* DetailGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailGViewController.m; sourceTree = "<group>"; };
 		DD80C2108BB3BFD5715A8598 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EC48A2D77F59DE828AC92C1A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,10 +173,14 @@
 				C9C71B9719F4E13900557A49 /* PostEventViewController.m */,
 				C936156019F58D32003AB5B8 /* PlacesViewController.h */,
 				C936156119F58D32003AB5B8 /* PlacesViewController.m */,
+				C9C8598619F6AEA600093ACF /* DetailGViewController.h */,
+				C9C8598719F6AEA600093ACF /* DetailGViewController.m */,
 				427C64C219F37A240067F2E4 /* EventCenterTableViewController.h */,
 				427C64C319F37A240067F2E4 /* EventCenterTableViewController.m */,
 				C913E95B19F45AE1007A329C /* DetailViewController.h */,
 				C913E95C19F45AE1007A329C /* DetailViewController.m */,
+				C9525C6219F63E3700E80F9D /* PhotoTableViewCell.h */,
+				C9525C6319F63E3700E80F9D /* PhotoTableViewCell.m */,
 				C98A1C7E19F372D90067D85F /* AppDelegate.h */,
 				C98A1C7F19F372D90067D85F /* AppDelegate.m */,
 				C98A1C8419F372D90067D85F /* ViewController.h */,
@@ -357,6 +367,7 @@
 				C913E95919F4454C007A329C /* EventCenterTableViewCell.m in Sources */,
 				C936155B19F58B6D003AB5B8 /* Place.m in Sources */,
 				C936155C19F58B6D003AB5B8 /* PlaceOptions.m in Sources */,
+				C9C8598819F6AEA600093ACF /* DetailGViewController.m in Sources */,
 				C913E95D19F45AE1007A329C /* DetailViewController.m in Sources */,
 				C936155E19F58B6D003AB5B8 /* PlacesRequest.m in Sources */,
 				C936155D19F58B6D003AB5B8 /* PlacesClient.m in Sources */,
@@ -366,6 +377,7 @@
 				C936155A19F58B6D003AB5B8 /* JSONParser.m in Sources */,
 				C9C71B9519F4CCE600557A49 /* Event.m in Sources */,
 				C98A1C7D19F372D90067D85F /* main.m in Sources */,
+				C9525C6419F63E3700E80F9D /* PhotoTableViewCell.m in Sources */,
 				C936155F19F58B6D003AB5B8 /* Request.m in Sources */,
 				C98A1C8619F372D90067D85F /* ViewController.m in Sources */,
 				C98A1C8319F372D90067D85F /* GiTizen.xcdatamodeld in Sources */,

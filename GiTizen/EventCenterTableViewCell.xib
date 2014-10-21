@@ -64,7 +64,7 @@
                 <outlet property="npLabel" destination="vMJ-6y-FUb" id="B38-f6-dAR"/>
                 <outlet property="tsLabel" destination="qqO-vV-EDv" id="Pc8-JT-2kx"/>
             </connections>
-            <point key="canvasLocation" x="112" y="339"/>
+            <point key="canvasLocation" x="197" y="281"/>
         </tableViewCell>
     </objects>
 </document>

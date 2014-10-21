@@ -16,7 +16,6 @@
 @interface EventCenterTableViewController ()
 
 @property (strong, nonatomic) NSArray *events;
-//@property (strong, nonatomic) Event *eventToPost;
 @property (strong, nonatomic) EventCenterTableViewCell *eventCell;
 
 @end
