@@ -40,7 +40,7 @@
         self.timeText.text = self.detailItem.starttime;
         self.capText.text = self.detailItem.number_of_peo;
         self.addrTextView.text = self.detailItem.g_loc_addr;
-        self.desTextView.text = @"Follow me !!!";
+        self.desTextView.text = @"All Welcome !!!";
     }
 }
 

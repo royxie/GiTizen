@@ -233,7 +233,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="buttonCLick:" destination="j78-Oa-6XI" eventType="touchUpInside" id="gMd-hO-BFa"/>
                                     <segue destination="eRK-zY-rDo" kind="show" identifier="searchLoc" id="8UE-OO-mae"/>
                                 </connections>
                             </button>
@@ -245,14 +244,17 @@
                             <constraint firstItem="jnw-LK-1lb" firstAttribute="leading" secondItem="RrC-zo-Xr1" secondAttribute="trailing" constant="31" id="810-hU-1NN"/>
                             <constraint firstItem="yKH-fd-hFn" firstAttribute="trailing" secondItem="Xwd-b4-GU3" secondAttribute="trailingMargin" id="B8r-oS-adg"/>
                             <constraint firstItem="mnz-9O-xKv" firstAttribute="top" secondItem="Pa4-l1-e3H" secondAttribute="bottom" constant="20" id="Cjf-hR-Mnr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="43l-Mn-Pp5" secondAttribute="trailing" constant="77" id="Eev-VW-UHL"/>
                             <constraint firstItem="43l-Mn-Pp5" firstAttribute="leading" secondItem="oMC-93-8c0" secondAttribute="trailing" constant="12" id="Eyv-BY-seJ"/>
                             <constraint firstItem="oMC-93-8c0" firstAttribute="leading" secondItem="Xwd-b4-GU3" secondAttribute="leadingMargin" id="HkB-dd-8zx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="43l-Mn-Pp5" secondAttribute="trailing" constant="77" id="JXy-sM-DXt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="43l-Mn-Pp5" secondAttribute="trailing" constant="77" id="JoZ-lF-HXg"/>
                             <constraint firstItem="jnw-LK-1lb" firstAttribute="centerY" secondItem="RrC-zo-Xr1" secondAttribute="centerY" constant="0.5" id="Lwd-Zb-cBI"/>
                             <constraint firstItem="43l-Mn-Pp5" firstAttribute="leading" secondItem="oMC-93-8c0" secondAttribute="trailing" constant="12" id="N1c-A4-BK4"/>
                             <constraint firstItem="Zq8-mI-ttE" firstAttribute="trailing" secondItem="Xwd-b4-GU3" secondAttribute="trailingMargin" id="Pnw-gp-gi8"/>
                             <constraint firstItem="Pa4-l1-e3H" firstAttribute="leading" secondItem="Xwd-b4-GU3" secondAttribute="leadingMargin" id="Rwa-EP-ogj"/>
                             <constraint firstItem="Pa4-l1-e3H" firstAttribute="centerY" secondItem="yKH-fd-hFn" secondAttribute="centerY" constant="-0.5" id="XV8-w0-apq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="43l-Mn-Pp5" secondAttribute="trailing" constant="77" id="YTe-uj-mkU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1d3-ux-Nk6" secondAttribute="trailing" constant="6" id="d3J-55-NhF"/>
                             <constraint firstItem="oMC-93-8c0" firstAttribute="top" secondItem="iqr-uM-xHC" secondAttribute="bottom" constant="49" id="dXa-CB-I7c"/>
                             <constraint firstAttribute="trailingMargin" secondItem="43l-Mn-Pp5" secondAttribute="trailing" constant="77" id="euz-q5-oCG"/>
@@ -327,7 +329,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcJ-5F-rxE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="SP6-Hb-C1j"/>
             </objects>
-            <point key="canvasLocation" x="-53" y="394"/>
+            <point key="canvasLocation" x="-12" y="408"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZFj-xA-KTN">
@@ -439,7 +441,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X1k-vI-Luc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="646" y="394"/>
+            <point key="canvasLocation" x="730" y="403"/>
         </scene>
     </scenes>
 </document>

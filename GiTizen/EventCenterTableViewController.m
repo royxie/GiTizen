@@ -114,7 +114,6 @@
     
     //push it to the navigationController
     [[self navigationController] pushViewController:detailedViewController animated:YES];
-    //[detailedViewController setDetailItem: self.eventCell];
      */
 }
 

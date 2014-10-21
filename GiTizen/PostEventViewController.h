@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Event.h"
+#import "Place.h"
 
 @interface PostEventViewController : UIViewController
+
+@property (strong,nonatomic) Place* gPlace;
 
 @end
