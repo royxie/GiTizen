@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0288210C53582A677CEAB99A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF0F0B2793CF2950B79519F /* libPods.a */; };
+		27E60C1619F5AFA100F4BEDD /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27E60C1519F5AFA100F4BEDD /* fontawesome-webfont.ttf */; };
 		427C64C419F37A240067F2E4 /* EventCenterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C64C319F37A240067F2E4 /* EventCenterTableViewController.m */; };
 		C913E95919F4454C007A329C /* EventCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C913E95719F4454C007A329C /* EventCenterTableViewCell.m */; };
 		C913E95D19F45AE1007A329C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C913E95C19F45AE1007A329C /* DetailViewController.m */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27E60C1519F5AFA100F4BEDD /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		427C64C219F37A240067F2E4 /* EventCenterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCenterTableViewController.h; sourceTree = "<group>"; };
 		427C64C319F37A240067F2E4 /* EventCenterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCenterTableViewController.m; sourceTree = "<group>"; };
 		4CF0F0B2793CF2950B79519F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +194,7 @@
 		C98A1C7A19F372D90067D85F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				27E60C1519F5AFA100F4BEDD /* fontawesome-webfont.ttf */,
 				C9325F1A19F4A18000DD6D0F /* Info.plist */,
 				C98A1C7C19F372D90067D85F /* main.m */,
 			);
@@ -300,6 +303,7 @@
 				C9325F1919F49FFC00DD6D0F /* EventCenterTableViewCell.xib in Resources */,
 				C98A1C8919F372D90067D85F /* Main.storyboard in Resources */,
 				C98A1C8E19F372D90067D85F /* LaunchScreen.xib in Resources */,
+				27E60C1619F5AFA100F4BEDD /* fontawesome-webfont.ttf in Resources */,
 				C9325F1B19F4A18000DD6D0F /* Info.plist in Resources */,
 				C98A1C8B19F372D90067D85F /* Images.xcassets in Resources */,
 			);

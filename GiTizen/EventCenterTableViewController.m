@@ -11,6 +11,7 @@
 #import "Event.h"
 #import "EventCenterTableViewCell.h"
 #import "DetailViewController.h"
+#import "NSString+FontAwesome.h"
 
 
 @interface EventCenterTableViewController ()
@@ -29,6 +30,8 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refresh)forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
+    
+    self.navigationItem.title = @"Event Center";
     
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filterEvents)];
     self.navigationItem.leftBarButtonItem = leftButton;
@@ -95,7 +98,38 @@
 {
     Event *event = self.events[indexPath.row];
     
-    self.eventCell.categoryLabel.text = event.category;
+    //self.eventCell.categoryLabel.text = event.category;
+    //id food  = [NSString fontAwesomeIconStringForEnum:FAIconBook];
+    
+    id icon = [NSString fontAwesomeIconStringForEnum:FAIconBook];
+    
+    if ([event.category  isEqual: @"Sport"]) {
+            icon = [NSString fontAwesomeIconStringForEnum:FAIconFlag];
+    }
+    if ([event.category  isEqual: @"Adventure"]) {
+            icon = [NSString fontAwesomeIconStringForEnum:FAIconPlane];
+    }
+    if ([event.category  isEqual: @"Food"]) {
+            icon = [NSString fontAwesomeIconStringForEnum:FAIconGlass];
+    }
+    if ([event.category  isEqual: @"Concert"]) {
+            icon = [NSString fontAwesomeIconStringForEnum:FAIconMusic];
+    }
+    if ([event.category  isEqual: @"Drama"]) {
+            icon = [NSString fontAwesomeIconStringForEnum:FAIconGroup];
+    }
+    if ([event.category  isEqual: @"Bar"]) {
+            icon = [NSString fontAwesomeIconStringForEnum:FAIconGlass];
+    }
+    if ([event.category  isEqual: @"Hiking"]) {
+            icon = [NSString fontAwesomeIconStringForEnum:FAIconGlobe];
+    }
+    if ([event.category  isEqual: @"Reading"]) {
+            icon = [NSString fontAwesomeIconStringForEnum:FAIconBook];
+    }
+    
+    self.eventCell.categoryLabel.font = [UIFont fontWithName:kFontAwesomeFamilyName size:50.f];
+    self.eventCell.categoryLabel.text = [NSString stringWithFormat:@"%@", icon];
     self.eventCell.locLabel.text = event.g_loc_name;
     self.eventCell.tsLabel.text = event.starttime;
     self.eventCell.addrLabel.text = event.g_loc_addr;

@@ -7,6 +7,7 @@
 //
 
 #import "EventCenterTableViewCell.h"
+#import "NSString+FontAwesome.h"
 
 @implementation EventCenterTableViewCell
 
