@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailGViewController.h"
 #import "DetailViewController.h"
 #import "Constants.h"
 #import "PlacesClient.h"
 #import "Place.h"
 
 @interface PlacesViewController : UIViewController
+
+@property (strong,nonatomic) NSString* searchText;
 
 @end

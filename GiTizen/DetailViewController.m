@@ -19,8 +19,6 @@
 
 @end
 
-
-
 @implementation DetailViewController
 
 #pragma mark - Managing the detail item

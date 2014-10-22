@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0288210C53582A677CEAB99A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF0F0B2793CF2950B79519F /* libPods.a */; };
+		2792180B19F7EF2A00E65A26 /* DetailGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2792180819F7EF2A00E65A26 /* DetailGViewController.m */; };
+		2792180C19F7EF2A00E65A26 /* PhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2792180A19F7EF2A00E65A26 /* PhotoTableViewCell.m */; };
 		27E60C1619F5AFA100F4BEDD /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27E60C1519F5AFA100F4BEDD /* fontawesome-webfont.ttf */; };
 		427C64C419F37A240067F2E4 /* EventCenterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C64C319F37A240067F2E4 /* EventCenterTableViewController.m */; };
 		C913E95919F4454C007A329C /* EventCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C913E95719F4454C007A329C /* EventCenterTableViewCell.m */; };
@@ -45,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2792180719F7EF2A00E65A26 /* DetailGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailGViewController.h; sourceTree = "<group>"; };
+		2792180819F7EF2A00E65A26 /* DetailGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailGViewController.m; sourceTree = "<group>"; };
+		2792180919F7EF2A00E65A26 /* PhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTableViewCell.h; sourceTree = "<group>"; };
+		2792180A19F7EF2A00E65A26 /* PhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTableViewCell.m; sourceTree = "<group>"; };
 		27E60C1519F5AFA100F4BEDD /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		427C64C219F37A240067F2E4 /* EventCenterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCenterTableViewController.h; sourceTree = "<group>"; };
 		427C64C319F37A240067F2E4 /* EventCenterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCenterTableViewController.m; sourceTree = "<group>"; };
@@ -151,6 +157,10 @@
 		C98A1C7919F372D90067D85F /* GiTizen */ = {
 			isa = PBXGroup;
 			children = (
+				2792180719F7EF2A00E65A26 /* DetailGViewController.h */,
+				2792180819F7EF2A00E65A26 /* DetailGViewController.m */,
+				2792180919F7EF2A00E65A26 /* PhotoTableViewCell.h */,
+				2792180A19F7EF2A00E65A26 /* PhotoTableViewCell.m */,
 				C936154B19F58B6D003AB5B8 /* Constants.h */,
 				C936154C19F58B6D003AB5B8 /* Constants.m */,
 				C936154D19F58B6D003AB5B8 /* JSONParser.h */,
@@ -359,6 +369,7 @@
 				427C64C419F37A240067F2E4 /* EventCenterTableViewController.m in Sources */,
 				C98A1C8019F372D90067D85F /* AppDelegate.m in Sources */,
 				C913E95919F4454C007A329C /* EventCenterTableViewCell.m in Sources */,
+				2792180B19F7EF2A00E65A26 /* DetailGViewController.m in Sources */,
 				C936155B19F58B6D003AB5B8 /* Place.m in Sources */,
 				C936155C19F58B6D003AB5B8 /* PlaceOptions.m in Sources */,
 				C913E95D19F45AE1007A329C /* DetailViewController.m in Sources */,
@@ -367,6 +378,7 @@
 				C936156219F58D32003AB5B8 /* PlacesViewController.m in Sources */,
 				C9C71B9819F4E13900557A49 /* PostEventViewController.m in Sources */,
 				C936155919F58B6D003AB5B8 /* Constants.m in Sources */,
+				2792180C19F7EF2A00E65A26 /* PhotoTableViewCell.m in Sources */,
 				C936155A19F58B6D003AB5B8 /* JSONParser.m in Sources */,
 				C9C71B9519F4CCE600557A49 /* Event.m in Sources */,
 				C98A1C7D19F372D90067D85F /* main.m in Sources */,

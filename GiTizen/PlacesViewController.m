@@ -8,8 +8,11 @@
 
 #import "PlacesViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "Constants.h"
+#import "PlacesClient.h"
 
 @interface PlacesViewController ()< UITableViewDataSource,UITableViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate >
+
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (nonatomic) NSArray* googlePlaces;
@@ -31,6 +34,8 @@
     [super viewDidLoad];
     
     self.searchBar.delegate = self;
+    self.searchBar.text = self.searchText;
+    NSLog(@"self.searchBar: %@",self.searchBar.text);
 
     self.places = [NSMutableArray new];
     
@@ -48,6 +53,8 @@
 
     //set the table view controller's table view
     tableViewController.tableView =  self.myTableView;
+    self.myTableView.delegate = self;
+    self.myTableView.dataSource = self;
     
     //create a refresh control
     self.refreshControl = [[UIRefreshControl alloc]init];
@@ -61,6 +68,16 @@
     //create instance of shared client
     _client = [PlacesClient sharedClient];
     
+    // invoke the search automatically
+    [self searchBarSearchButtonClicked:self.searchBar];
+    
+}
+
+#pragma mark - Managing the search text item
+- (void)setSearchText:(NSString*)newsearchText {
+    if (_searchText != newsearchText) {
+        _searchText = newsearchText;
+    }
 }
 
 #pragma mark - UIRefreshControl Method
@@ -70,6 +87,11 @@
    [self.refreshControl endRefreshing];
 }
 
+// remove space in a string
+-(NSString*) removeSpace:(NSString*) s
+{
+    return [s stringByReplacingOccurrencesOfString:@" " withString:@""];
+}
 
 #pragma mark - UISearchBarControllerDelegate Methods
 
@@ -77,10 +99,11 @@
 {
     if (![searchBar.text isEqualToString:@""] )
     {
-        
+        self.searchText = [self removeSpace:searchBar.text];
+        //NSLog(@"searchBar: %@",self.searchText);
         NSString* location = [NSString stringWithFormat:@"%f,%f",self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude];
         
-        NSDictionary* parameters = @{@"query":searchBar.text, @"location":location, @"radius":@5000};
+        NSDictionary* parameters = @{@"query":self.searchText, @"location":location, @"radius":@5000};
         _client.request.search = Text;
         
         [_client placeRequest:_client.request withParameters:parameters completion:^(NSData *data, NSURL *url, NSURLResponse *response, NSError *error) {
@@ -116,6 +139,7 @@
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
     Place* place = _places[indexPath.row];
+    //NSLog(@"place: %@",place);
     cell.textLabel.text = place.name; //place[@"name"];
     cell.detailTextLabel.text = place.address; //place[@"vicinity"];
     
@@ -185,8 +209,8 @@
     if ([segue.identifier isEqualToString:@"showDetail"])
     {
         NSIndexPath* indexPath = [self.myTableView indexPathForCell:sender];
-        DetailViewController *vc = segue.destinationViewController;
-        //vc.place = self.places[[indexPath row]];
+        DetailGViewController *vc = segue.destinationViewController;
+        vc.place = self.places[[indexPath row]];
         //NSLog(@"%@",vc.place);
     }
 }

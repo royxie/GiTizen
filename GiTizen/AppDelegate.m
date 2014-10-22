@@ -31,7 +31,7 @@
     NSError *error = nil;
     
     NSString *path = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"GiTizen.sqlite"];
-    NSLog(@"%@", path);
+    //NSLog(@"%@", path);
     objectManager.managedObjectStore = managedObjectStore;
     
     [objectManager.managedObjectStore addSQLitePersistentStoreAtPath:path fromSeedDatabaseAtPath:nil withConfiguration:nil options:nil error:&error];
