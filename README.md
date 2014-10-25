@@ -1,4 +1,0 @@
-GiTizen
-=======
-
-GiTizen iOS App
