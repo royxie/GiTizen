@@ -23,3 +23,14 @@
 
 @end
 
+@class MapKitExampleViewController;
+
+@interface MapKitExampleAppDelegate : NSObject <UIApplicationDelegate> {
+    UIWindow *window;
+    MapKitExampleViewController *viewController;
+}
+
+@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) IBOutlet MapKitExampleViewController *viewController;
+
+@end
