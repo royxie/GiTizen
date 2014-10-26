@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <RestKit/RestKit.h>
 #import "Event.h"
+#import "User.h"
 
 @implementation AppDelegate
 
@@ -24,7 +25,7 @@
     RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
     objectManager.requestSerializationMIMEType = RKMIMETypeJSON;
     NSURL *modelURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"GiTizen" ofType:@"momd"]];
-    
+    //NSLog(@"%@", modelURL);
     //Iniitalize CoreData with RestKit
     NSManagedObjectModel *managedObjectModel = [[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL] mutableCopy];
     RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
@@ -56,27 +57,63 @@
                                                        @"desc" : @"desc"
                                                        }];
     /*
-    "number_of_peo": "5",
-    "starttime": "19 OCT 2014 16:32",
-    "g_loc_icon": "http://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
-    "g_loc_id": "7eaf747a3f6dc078868cd65efc8d3bc62fff77d7",
-    "g_loc_name": "Tetsuya's",
-    "g_loc_addr": "529 Kent Street, Sydney NSW, Australia",
-    "gtid": "903060555",
-    "category": "Hangout",
-    "_id": "5444212b659e031508000002"
+     "number_of_peo": "5",
+     "starttime": "19 OCT 2014 16:32",
+     "g_loc_icon": "http://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+     "g_loc_id": "7eaf747a3f6dc078868cd65efc8d3bc62fff77d7",
+     "g_loc_name": "Tetsuya's",
+     "g_loc_addr": "529 Kent Street, Sydney NSW, Australia",
+     "gtid": "903060555",
+     "category": "Hangout",
+     "_id": "5444212b659e031508000002"
      */
     
-    // Register our mappings with the provider
-    RKResponseDescriptor *responseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:eventMapping
-                                                                                            method:RKRequestMethodGET
-                                                                                       pathPattern:@"/api/events"
-                                                                                           keyPath:nil
-                                                                                       statusCodes:[NSIndexSet indexSetWithIndex:200]];
-    [objectManager addResponseDescriptor:responseDescriptor];
+    RKEntityMapping *userMapping = [RKEntityMapping mappingForEntityForName:@"User" inManagedObjectStore:managedObjectStore];
+    [userMapping addAttributeMappingsFromDictionary:@{
+                                                      @"gtid" : @"gtid",
+                                                      @"username" : @"username",
+                                                      @"fname" : @"firstname",
+                                                      @"lname" : @"lastname"
+                                                      }];
     
-    RKRequestDescriptor *requestDescriptor = [RKRequestDescriptor requestDescriptorWithMapping:[eventMapping inverseMapping] objectClass:[Event class] rootKeyPath:nil method:RKRequestMethodPOST];
-    [objectManager addRequestDescriptor:requestDescriptor];
+    // Register our mappings with the provider
+    RKResponseDescriptor *responseDescriptor1 = [RKResponseDescriptor responseDescriptorWithMapping:eventMapping
+                                                                                             method:RKRequestMethodGET
+                                                                                        pathPattern:@"/api/events"
+                                                                                            keyPath:nil
+                                                                                        statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    
+    [objectManager addResponseDescriptor:responseDescriptor1];
+    
+    RKResponseDescriptor *responseDescriptor_gtid = [RKResponseDescriptor responseDescriptorWithMapping:eventMapping
+                                                                                             method:RKRequestMethodGET
+                                                                                        pathPattern:@"/api/events/gtid/:gtid"
+                                                                                            keyPath:nil
+                                                                                        statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    
+    [objectManager addResponseDescriptor:responseDescriptor_gtid];
+    
+    RKResponseDescriptor *responseDescriptor_id = [RKResponseDescriptor responseDescriptorWithMapping:eventMapping
+                                                                                                 method:RKRequestMethodGET
+                                                                                            pathPattern:@"/api/events/:object_id"
+                                                                                                keyPath:nil
+                                                                                            statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    
+    [objectManager addResponseDescriptor:responseDescriptor_id];
+    
+    RKResponseDescriptor *responseDescriptor2 = [RKResponseDescriptor responseDescriptorWithMapping:userMapping
+                                                                                             method:RKRequestMethodGET
+                                                                                        pathPattern:@"/api/users"
+                                                                                            keyPath:nil
+                                                                                        statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    
+    [objectManager addResponseDescriptor:responseDescriptor2];
+    
+    RKRequestDescriptor *requestDescriptor1 = [RKRequestDescriptor requestDescriptorWithMapping:[eventMapping inverseMapping] objectClass:[Event class] rootKeyPath:nil method:RKRequestMethodPOST];
+    [objectManager addRequestDescriptor:requestDescriptor1];
+    
+    RKRequestDescriptor *requestDescriptor2 = [RKRequestDescriptor requestDescriptorWithMapping:[userMapping inverseMapping] objectClass:[User class] rootKeyPath:nil method:RKRequestMethodPOST];
+    [objectManager addRequestDescriptor:requestDescriptor2];
     
     return YES;
 }

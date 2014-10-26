@@ -35,7 +35,7 @@
     
     self.searchBar.delegate = self;
     self.searchBar.text = self.searchText;
-    NSLog(@"self.searchBar: %@",self.searchBar.text);
+    //NSLog(@"self.searchBar: %@",self.searchBar.text);
 
     self.places = [NSMutableArray new];
     
@@ -175,7 +175,7 @@
     [_locationManager stopUpdatingLocation];
     
     NSString* location = [NSString stringWithFormat:@"%f,%f",self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude];
-    NSLog(@"lat: %f, lon: %f", self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude);
+    //NSLog(@"lat: %f, lon: %f", self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude);
     
     NSDictionary* parameters = @{@"location":location, @"radius":@5000};
 

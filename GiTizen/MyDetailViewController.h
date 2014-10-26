@@ -18,7 +18,7 @@
  */
 #define kDeltaLat 1.0f
 #define kDeltaLong 1.0f
-@interface DetailViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate, CLLocationManagerDelegate> {
+@interface MyDetailViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate, CLLocationManagerDelegate> {
     MKMapView *_mapView;
     Annotation *_newAnnotation;
     CLLocationManager *_locationManager;

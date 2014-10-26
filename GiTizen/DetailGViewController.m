@@ -69,9 +69,11 @@
     // goes back to the postevent view on stack.
     //UIViewController* postEventViewController = [[PostEventViewController alloc] init];
     //[[self navigationController] popToViewController: postEventViewController animated:YES];
-    PostEventViewController *peViewController = [self.navigationController.viewControllers objectAtIndex:1];
-    [peViewController setGPlace:self.place];
-    [self.navigationController popToViewController: peViewController animated:YES];
+    //PostEventViewController *peViewController = [self.navigationController.viewControllers objectAtIndex:1];
+    //NSLog(@"viewControllers: %@", self.navigationController.viewControllers);
+    NSArray* views = self.navigationController.viewControllers;
+    [views[views.count-3] setGPlace:self.place];
+    [self.navigationController popToViewController: views[views.count-3] animated:YES];
 }
 
 

@@ -31,14 +31,18 @@
 		C936156219F58D32003AB5B8 /* PlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C936156119F58D32003AB5B8 /* PlacesViewController.m */; };
 		C98A1C7D19F372D90067D85F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1C7C19F372D90067D85F /* main.m */; };
 		C98A1C8019F372D90067D85F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1C7F19F372D90067D85F /* AppDelegate.m */; };
-		C98A1C8319F372D90067D85F /* GiTizen.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C98A1C8119F372D90067D85F /* GiTizen.xcdatamodeld */; };
 		C98A1C8619F372D90067D85F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1C8519F372D90067D85F /* ViewController.m */; };
 		C98A1C8B19F372D90067D85F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C98A1C8A19F372D90067D85F /* Images.xcassets */; };
 		C98A1C8E19F372D90067D85F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98A1C8C19F372D90067D85F /* LaunchScreen.xib */; };
 		C98A1C9A19F372D90067D85F /* GiTizenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C98A1C9919F372D90067D85F /* GiTizenTests.m */; };
 		C98DF94219FC314300E7D3C5 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DF94119FC314300E7D3C5 /* Place.m */; };
-		C98DF94519FC319A00E7D3C5 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C98DF94419FC319A00E7D3C5 /* Event.m */; };
 		C98DF94719FC82D000E7D3C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C98DF94619FC82D000E7D3C5 /* Main.storyboard */; };
+		C990FD4819FCB3A200CD8DA8 /* MyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C990FD4719FCB3A200CD8DA8 /* MyDetailViewController.m */; };
+		C990FD4B19FCB89000CD8DA8 /* UpdateEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C990FD4A19FCB89000CD8DA8 /* UpdateEventViewController.m */; };
+		C990FD5319FCCAE000CD8DA8 /* GiTizen.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C990FD5119FCCAE000CD8DA8 /* GiTizen.xcdatamodeld */; };
+		C990FD5619FCCC0B00CD8DA8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C990FD5519FCCC0B00CD8DA8 /* User.m */; };
+		C990FD5919FCCC0B00CD8DA8 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C990FD5819FCCC0B00CD8DA8 /* Event.m */; };
+		C9AD7E4319FC9B9C00CE15C9 /* MyEventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AD7E4219FC9B9C00CE15C9 /* MyEventTableViewController.m */; };
 		C9C71B9819F4E13900557A49 /* PostEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C71B9719F4E13900557A49 /* PostEventViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -92,7 +96,6 @@
 		C98A1C7C19F372D90067D85F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C98A1C7E19F372D90067D85F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C98A1C7F19F372D90067D85F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C98A1C8219F372D90067D85F /* GiTizen.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GiTizen.xcdatamodel; sourceTree = "<group>"; };
 		C98A1C8419F372D90067D85F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		C98A1C8519F372D90067D85F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C98A1C8A19F372D90067D85F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -102,9 +105,18 @@
 		C98A1C9919F372D90067D85F /* GiTizenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GiTizenTests.m; sourceTree = "<group>"; };
 		C98DF94019FC314300E7D3C5 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		C98DF94119FC314300E7D3C5 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
-		C98DF94319FC319A00E7D3C5 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
-		C98DF94419FC319A00E7D3C5 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C98DF94619FC82D000E7D3C5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C990FD4619FCB3A200CD8DA8 /* MyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDetailViewController.h; sourceTree = "<group>"; };
+		C990FD4719FCB3A200CD8DA8 /* MyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDetailViewController.m; sourceTree = "<group>"; };
+		C990FD4919FCB89000CD8DA8 /* UpdateEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateEventViewController.h; sourceTree = "<group>"; };
+		C990FD4A19FCB89000CD8DA8 /* UpdateEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateEventViewController.m; sourceTree = "<group>"; };
+		C990FD5219FCCAE000CD8DA8 /* GiTizen.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GiTizen.xcdatamodel; sourceTree = "<group>"; };
+		C990FD5419FCCC0B00CD8DA8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		C990FD5519FCCC0B00CD8DA8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		C990FD5719FCCC0B00CD8DA8 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		C990FD5819FCCC0B00CD8DA8 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		C9AD7E4119FC9B9C00CE15C9 /* MyEventTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyEventTableViewController.h; sourceTree = "<group>"; };
+		C9AD7E4219FC9B9C00CE15C9 /* MyEventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyEventTableViewController.m; sourceTree = "<group>"; };
 		C9C71B9619F4E13900557A49 /* PostEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostEventViewController.h; sourceTree = "<group>"; };
 		C9C71B9719F4E13900557A49 /* PostEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostEventViewController.m; sourceTree = "<group>"; };
 		DD80C2108BB3BFD5715A8598 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -208,20 +220,28 @@
 				427C64C319F37A240067F2E4 /* EventCenterTableViewController.m */,
 				C913E95B19F45AE1007A329C /* DetailViewController.h */,
 				C913E95C19F45AE1007A329C /* DetailViewController.m */,
+				C9AD7E4119FC9B9C00CE15C9 /* MyEventTableViewController.h */,
+				C9AD7E4219FC9B9C00CE15C9 /* MyEventTableViewController.m */,
+				C990FD4619FCB3A200CD8DA8 /* MyDetailViewController.h */,
+				C990FD4719FCB3A200CD8DA8 /* MyDetailViewController.m */,
+				C990FD4919FCB89000CD8DA8 /* UpdateEventViewController.h */,
+				C990FD4A19FCB89000CD8DA8 /* UpdateEventViewController.m */,
 				C98A1C7E19F372D90067D85F /* AppDelegate.h */,
 				C98A1C7F19F372D90067D85F /* AppDelegate.m */,
 				C98A1C8419F372D90067D85F /* ViewController.h */,
 				C98A1C8519F372D90067D85F /* ViewController.m */,
+				C98DF94619FC82D000E7D3C5 /* Main.storyboard */,
 				C98A1C8A19F372D90067D85F /* Images.xcassets */,
 				C98A1C8C19F372D90067D85F /* LaunchScreen.xib */,
-				C98A1C8119F372D90067D85F /* GiTizen.xcdatamodeld */,
-				C98DF94319FC319A00E7D3C5 /* Event.h */,
-				C98DF94419FC319A00E7D3C5 /* Event.m */,
-				C98DF94619FC82D000E7D3C5 /* Main.storyboard */,
 				C98A1C7A19F372D90067D85F /* Supporting Files */,
 				C913E95619F4454C007A329C /* EventCenterTableViewCell.h */,
 				C913E95719F4454C007A329C /* EventCenterTableViewCell.m */,
 				C913E95819F4454C007A329C /* EventCenterTableViewCell.xib */,
+				C990FD5119FCCAE000CD8DA8 /* GiTizen.xcdatamodeld */,
+				C990FD5719FCCC0B00CD8DA8 /* Event.h */,
+				C990FD5819FCCC0B00CD8DA8 /* Event.m */,
+				C990FD5419FCCC0B00CD8DA8 /* User.h */,
+				C990FD5519FCCC0B00CD8DA8 /* User.m */,
 			);
 			path = GiTizen;
 			sourceTree = "<group>";
@@ -393,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				427C64C419F37A240067F2E4 /* EventCenterTableViewController.m in Sources */,
+				C990FD4819FCB3A200CD8DA8 /* MyDetailViewController.m in Sources */,
 				C98A1C8019F372D90067D85F /* AppDelegate.m in Sources */,
 				C913E95919F4454C007A329C /* EventCenterTableViewCell.m in Sources */,
 				2792180B19F7EF2A00E65A26 /* DetailGViewController.m in Sources */,
@@ -401,17 +422,20 @@
 				C936155E19F58B6D003AB5B8 /* PlacesRequest.m in Sources */,
 				C936155D19F58B6D003AB5B8 /* PlacesClient.m in Sources */,
 				C936156219F58D32003AB5B8 /* PlacesViewController.m in Sources */,
+				C990FD4B19FCB89000CD8DA8 /* UpdateEventViewController.m in Sources */,
+				C9AD7E4319FC9B9C00CE15C9 /* MyEventTableViewController.m in Sources */,
+				C990FD5919FCCC0B00CD8DA8 /* Event.m in Sources */,
+				C990FD5619FCCC0B00CD8DA8 /* User.m in Sources */,
 				277F144919FADEA2000C0FD9 /* Annotation.m in Sources */,
+				C990FD5319FCCAE000CD8DA8 /* GiTizen.xcdatamodeld in Sources */,
 				C9C71B9819F4E13900557A49 /* PostEventViewController.m in Sources */,
 				C936155919F58B6D003AB5B8 /* Constants.m in Sources */,
-				C98DF94519FC319A00E7D3C5 /* Event.m in Sources */,
 				2792180C19F7EF2A00E65A26 /* PhotoTableViewCell.m in Sources */,
 				C936155A19F58B6D003AB5B8 /* JSONParser.m in Sources */,
 				C98DF94219FC314300E7D3C5 /* Place.m in Sources */,
 				C98A1C7D19F372D90067D85F /* main.m in Sources */,
 				C936155F19F58B6D003AB5B8 /* Request.m in Sources */,
 				C98A1C8619F372D90067D85F /* ViewController.m in Sources */,
-				C98A1C8319F372D90067D85F /* GiTizen.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,12 +634,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		C98A1C8119F372D90067D85F /* GiTizen.xcdatamodeld */ = {
+		C990FD5119FCCAE000CD8DA8 /* GiTizen.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C98A1C8219F372D90067D85F /* GiTizen.xcdatamodel */,
+				C990FD5219FCCAE000CD8DA8 /* GiTizen.xcdatamodel */,
 			);
-			currentVersion = C98A1C8219F372D90067D85F /* GiTizen.xcdatamodel */;
+			currentVersion = C990FD5219FCCAE000CD8DA8 /* GiTizen.xcdatamodel */;
 			path = GiTizen.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
