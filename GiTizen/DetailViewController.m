@@ -93,8 +93,8 @@
     NSMutableArray *poiAnnotationArray  = [[NSMutableArray alloc] init];
     NSMutableArray *selected = [[NSMutableArray alloc] init];
     
-    CLLocationDegrees poiOneLat  = kPhoenixLat;
-    CLLocationDegrees poiOneLong = kPhoenixLong;
+    CLLocationDegrees poiOneLat  = [self.detailItem.g_loc_lat doubleValue];
+    CLLocationDegrees poiOneLong = [self.detailItem.g_loc_lon doubleValue];
     
     CLLocation *firstLocation = [[CLLocation alloc] initWithLatitude:poiOneLat longitude:poiOneLong];
     
@@ -102,26 +102,8 @@
     
     //[firstLocation release];
     
-    self.newAnnotation.title    = @"Phoenix Office Title";
-    self.newAnnotation.subtitle = @"Phoenix Office SubTitle";
-    
-    [poiAnnotationArray addObject:self.newAnnotation];
-    
-    [selected addObject:self.newAnnotation];
-    
-    self.newAnnotation = nil;
-    
-    CLLocationDegrees poiTwoLat  = kXBldgLat;
-    CLLocationDegrees poiTwoLong = kXBldgLong;
-    
-    CLLocation *secondLocation = [[CLLocation alloc] initWithLatitude:poiTwoLat longitude:poiTwoLong];
-    
-    self.newAnnotation = [Annotation annotationWithCoordinate:secondLocation.coordinate];
-    
-    //[secondLocation release];
-    
-    self.newAnnotation.title    = @"XBldg Title";
-    self.newAnnotation.subtitle = @"XBldg SubTitle";
+    self.newAnnotation.title    = self.detailItem.g_loc_name;
+    //self.newAnnotation.subtitle = @"Phoenix Office SubTitle";
     
     [poiAnnotationArray addObject:self.newAnnotation];
     

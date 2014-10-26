@@ -2,7 +2,7 @@
 //  Event.h
 //  GiTizen
 //
-//  Created by XieShiyu on 20/10/14.
+//  Created by XieShiyu on 25/10/14.
 //  Copyright (c) 2014 Pangu. All rights reserved.
 //
 
@@ -22,5 +22,8 @@
 @property (nonatomic, retain) NSString * number_of_peo;
 @property (nonatomic, retain) NSString * object_id;
 @property (nonatomic, retain) NSString * starttime;
+@property (nonatomic, retain) NSString * g_loc_lon;
+@property (nonatomic, retain) NSString * g_loc_lat;
+@property (nonatomic, retain) NSString * desc;
 
 @end

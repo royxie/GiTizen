@@ -50,7 +50,10 @@
                                                        @"category" : @"category",
                                                        @"_id" : @"object_id",    // server side: _id; ios side: object_id
                                                        @"number_of_peo" : @"number_of_peo",
-                                                       @"number_joined" : @"number_joined"
+                                                       @"number_joined" : @"number_joined",
+                                                       @"g_loc_lon" : @"g_loc_lon",
+                                                       @"g_loc_lat" : @"g_loc_lat",
+                                                       @"desc" : @"desc"
                                                        }];
     /*
     "number_of_peo": "5",

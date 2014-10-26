@@ -14,10 +14,10 @@
 #import "Annotation.h"
 
 
-#define kPhoenixLat 35.17939
-#define kPhoenixLong -89.83051
-#define kXBldgLat 35.15581
-#define kXBldgLong -90.04616
+//#define kPhoenixLat 35.17939
+//#define kPhoenixLong -89.83051
+//#define kXBldgLat 35.15581
+//#define kXBldgLong -90.04616
 /**
  * Change these values for region zooming when the map loads
  */

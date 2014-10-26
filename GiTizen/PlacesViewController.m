@@ -175,6 +175,7 @@
     [_locationManager stopUpdatingLocation];
     
     NSString* location = [NSString stringWithFormat:@"%f,%f",self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude];
+    NSLog(@"lat: %f, lon: %f", self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude);
     
     NSDictionary* parameters = @{@"location":location, @"radius":@5000};
 
@@ -271,6 +272,8 @@
         place.placeId = location[@"place_id"];
         place.icon = location [@"icon"];
         place.rating = location[@"rating"];
+        place.longitude = [NSString stringWithFormat:@"%@", location[@"geometry"][@"location"][@"lng"]];
+        place.latitude = [NSString stringWithFormat:@"%@", location[@"geometry"][@"location"][@"lat"]];
         [self.places addObject:place];
         dispatch_async(dispatch_get_main_queue(), ^{
             [_myTableView reloadData];

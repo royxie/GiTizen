@@ -16,7 +16,7 @@
 
 @interface EventCenterTableViewController ()
 
-@property (strong, nonatomic) NSArray *events;
+@property (strong, nonatomic) NSMutableArray *events;
 //@property (strong, nonatomic) Event *eventToPost;
 @property (strong, nonatomic) EventCenterTableViewCell *eventCell;
 
@@ -169,17 +169,20 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self deleteEvents:indexPath];
+        [self.events removeObjectAtIndex:indexPath.row];
+        [tableView reloadData];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -204,6 +207,24 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)deleteEvents:(NSIndexPath *)indexPath
+{
+    Event *selectedEvent = self.events[indexPath.row];
+    NSString* path = [@"/api/events/" stringByAppendingString:selectedEvent.object_id];
+    NSLog(@"%@", path);
+    [[RKObjectManager sharedManager]  deleteObject:NULL
+                                              path:path
+                                        parameters:nil
+                                           success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                                               NSLog(@"Successfully deleted");
+                                           }
+                                           failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                               NSLog(@"error occurred': %@", error);
+                                           }];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 -(void)loadEvents
 {

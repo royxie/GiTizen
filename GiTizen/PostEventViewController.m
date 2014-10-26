@@ -41,9 +41,10 @@
 }
 
 #pragma mark - Managing the Google location information item
-- (void)setGPlace:(Place*) googlePlace{
+- (void)setGPlace:(Place*) googlePlace {
     if (_gPlace != googlePlace) {
         _gPlace = googlePlace;
+        self.titleStr.text = _gPlace.name;
     }
 }
 
@@ -51,7 +52,6 @@
 {
     if ([segue.identifier isEqualToString:@"searchLoc"])
     {
-        //NSLog(@"%@",self.titleStr.text);
         [segue.destinationViewController setSearchText:self.titleStr.text];
     }
 }
@@ -62,7 +62,9 @@
         self.eventToPost.g_loc_addr = self.gPlace.formattedAddress;
         self.eventToPost.g_loc_id = self.gPlace.placeId;
         self.eventToPost.g_loc_icon = self.gPlace.icon;
-        NSLog(@"name: %@, addr: %@",self.gPlace.name, self.gPlace.address);
+        self.eventToPost.g_loc_lat = self.gPlace.latitude;
+        self.eventToPost.g_loc_lon = self.gPlace.longitude;
+        //NSLog(@"longtitude: %@, altitude: %@",self.gPlace.longitude, self.gPlace.latitude);
     }
     self.eventToPost.category = self.categoryStr.text;
     self.eventToPost.starttime = self.timeStr.text;
