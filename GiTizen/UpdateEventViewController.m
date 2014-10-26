@@ -41,6 +41,8 @@
     self.timeStr.text = self.myEvent.starttime;
     self.nopStr.text = self.myEvent.number_of_peo;
     self.descStr.text = self.myEvent.desc;
+    
+    self.eventToPut = self.myEvent;
 }
 
 #pragma mark - Managing the event item to update
@@ -85,11 +87,9 @@
     self.eventToPut.starttime = self.timeStr.text;
     self.eventToPut.number_of_peo = self.nopStr.text;
     self.eventToPut.desc = self.descStr.text;
+    //NSLog(@"eventToPut.category: %@, time: %@, number_of_peo: %@, gtid: %@", self.eventToPut.category, self.eventToPut.starttime, self.eventToPut.number_of_peo, self.eventToPut.gtid);
     
-    self.eventToPut.gtid = self.myEvent.gtid;
-    //NSLog(@"eventToPut.gtid: %@", self.eventToPut.gtid);
-    
-    NSString* path = [@"/api/events/" stringByAppendingString:self.myEvent.object_id];
+    NSString* path = [@"/api/events/" stringByAppendingString:self.eventToPut.object_id];
     [[RKObjectManager sharedManager]       putObject:self.eventToPut
                                                 path:path
                                           parameters:nil

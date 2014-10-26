@@ -151,7 +151,6 @@
     if ([[segue identifier] isEqualToString:@"eventDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         Event *selectedEvent = self.events[indexPath.row];
-        NSLog(@"selectedEvent-> capacity: %@", selectedEvent.number_of_peo);
         [[segue destinationViewController] setDetailItem:selectedEvent];
     }
 }

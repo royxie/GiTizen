@@ -112,6 +112,9 @@
     RKRequestDescriptor *requestDescriptor1 = [RKRequestDescriptor requestDescriptorWithMapping:[eventMapping inverseMapping] objectClass:[Event class] rootKeyPath:nil method:RKRequestMethodPOST];
     [objectManager addRequestDescriptor:requestDescriptor1];
     
+    RKRequestDescriptor *requestDescriptor_id = [RKRequestDescriptor requestDescriptorWithMapping:[eventMapping inverseMapping] objectClass:[Event class] rootKeyPath:nil method:RKRequestMethodPUT];
+    [objectManager addRequestDescriptor:requestDescriptor_id];
+    
     RKRequestDescriptor *requestDescriptor2 = [RKRequestDescriptor requestDescriptorWithMapping:[userMapping inverseMapping] objectClass:[User class] rootKeyPath:nil method:RKRequestMethodPOST];
     [objectManager addRequestDescriptor:requestDescriptor2];
     

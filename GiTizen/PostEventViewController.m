@@ -75,7 +75,6 @@
     self.eventToPost.number_of_peo = self.nopStr.text;
     self.eventToPost.desc = self.descStr.text;
     
-    NSLog(@"POST number_of_peo: %@", self.eventToPost.number_of_peo);
     [[RKObjectManager sharedManager]    postObject:self.eventToPost
                                               path:@"/api/events"
                                         parameters:nil
