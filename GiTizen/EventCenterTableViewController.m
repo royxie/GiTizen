@@ -137,14 +137,6 @@
     
     [self performSegueWithIdentifier:@"eventDetail" sender:nil];
     
-    /*
-    //allocate your view controller
-    DetailViewController *detailedViewController = [[DetailViewController alloc] init];
-    
-    //push it to the navigationController
-    [[self navigationController] pushViewController:detailedViewController animated:YES];
-    //[detailedViewController setDetailItem: self.eventCell];
-     */
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

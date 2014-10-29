@@ -10,6 +10,7 @@
 #import <RestKit/RestKit.h>
 #import "Event.h"
 #import "User.h"
+#import "Join.h"
 
 @implementation AppDelegate
 
@@ -76,14 +77,20 @@
                                                       @"lname" : @"lastname"
                                                       }];
     
+    RKEntityMapping *joinMapping = [RKEntityMapping mappingForEntityForName:@"Join" inManagedObjectStore:managedObjectStore];
+    [joinMapping addAttributeMappingsFromDictionary:@{
+                                                      @"gtid" : @"gtid",
+                                                      @"event_id" : @"event_id"
+                                                      }];
+    
     // Register our mappings with the provider
-    RKResponseDescriptor *responseDescriptor1 = [RKResponseDescriptor responseDescriptorWithMapping:eventMapping
+    RKResponseDescriptor *responseDescriptor_event = [RKResponseDescriptor responseDescriptorWithMapping:eventMapping
                                                                                              method:RKRequestMethodGET
                                                                                         pathPattern:@"/api/events"
                                                                                             keyPath:nil
                                                                                         statusCodes:[NSIndexSet indexSetWithIndex:200]];
     
-    [objectManager addResponseDescriptor:responseDescriptor1];
+    [objectManager addResponseDescriptor:responseDescriptor_event];
     
     RKResponseDescriptor *responseDescriptor_gtid = [RKResponseDescriptor responseDescriptorWithMapping:eventMapping
                                                                                              method:RKRequestMethodGET
@@ -101,22 +108,54 @@
     
     [objectManager addResponseDescriptor:responseDescriptor_id];
     
-    RKResponseDescriptor *responseDescriptor2 = [RKResponseDescriptor responseDescriptorWithMapping:userMapping
+    RKResponseDescriptor *responseDescriptor_user = [RKResponseDescriptor responseDescriptorWithMapping:userMapping
                                                                                              method:RKRequestMethodGET
                                                                                         pathPattern:@"/api/users"
                                                                                             keyPath:nil
                                                                                         statusCodes:[NSIndexSet indexSetWithIndex:200]];
     
-    [objectManager addResponseDescriptor:responseDescriptor2];
+    [objectManager addResponseDescriptor:responseDescriptor_user];
     
-    RKRequestDescriptor *requestDescriptor1 = [RKRequestDescriptor requestDescriptorWithMapping:[eventMapping inverseMapping] objectClass:[Event class] rootKeyPath:nil method:RKRequestMethodPOST];
-    [objectManager addRequestDescriptor:requestDescriptor1];
+    RKResponseDescriptor *responseDescriptor_join = [RKResponseDescriptor responseDescriptorWithMapping:joinMapping
+                                                                                                 method:RKRequestMethodGET
+                                                                                            pathPattern:@"/api/joins"
+                                                                                                keyPath:nil
+                                                                                            statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    
+    [objectManager addResponseDescriptor:responseDescriptor_join];
+    
+    RKResponseDescriptor *responseDescriptor_join_gtid = [RKResponseDescriptor responseDescriptorWithMapping:joinMapping
+                                                                                                 method:RKRequestMethodGET
+                                                                                            pathPattern:@"/api/joins/gtid/:gtid"
+                                                                                                keyPath:nil
+                                                                                            statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    
+    [objectManager addResponseDescriptor:responseDescriptor_join_gtid];
+    
+    RKResponseDescriptor *responseDescriptor_join_eventid = [RKResponseDescriptor responseDescriptorWithMapping:joinMapping
+                                                                                                      method:RKRequestMethodGET
+                                                                                                 pathPattern:@"/api/joins/event_id/:event_id"
+                                                                                                     keyPath:nil
+                                                                                                 statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    
+    [objectManager addResponseDescriptor:responseDescriptor_join_eventid];
+    
+    // request descriptor
+    
+    RKRequestDescriptor *requestDescriptor_event = [RKRequestDescriptor requestDescriptorWithMapping:[eventMapping inverseMapping] objectClass:[Event class] rootKeyPath:nil method:RKRequestMethodPOST];
+    [objectManager addRequestDescriptor:requestDescriptor_event];
     
     RKRequestDescriptor *requestDescriptor_id = [RKRequestDescriptor requestDescriptorWithMapping:[eventMapping inverseMapping] objectClass:[Event class] rootKeyPath:nil method:RKRequestMethodPUT];
     [objectManager addRequestDescriptor:requestDescriptor_id];
     
-    RKRequestDescriptor *requestDescriptor2 = [RKRequestDescriptor requestDescriptorWithMapping:[userMapping inverseMapping] objectClass:[User class] rootKeyPath:nil method:RKRequestMethodPOST];
-    [objectManager addRequestDescriptor:requestDescriptor2];
+    RKRequestDescriptor *requestDescriptor_user = [RKRequestDescriptor requestDescriptorWithMapping:[userMapping inverseMapping] objectClass:[User class] rootKeyPath:nil method:RKRequestMethodPOST];
+    [objectManager addRequestDescriptor:requestDescriptor_user];
+    
+    RKRequestDescriptor *requestDescriptor_join_post = [RKRequestDescriptor requestDescriptorWithMapping:[joinMapping inverseMapping] objectClass:[Join class] rootKeyPath:nil method:RKRequestMethodPOST];
+    [objectManager addRequestDescriptor:requestDescriptor_join_post];
+    
+    RKRequestDescriptor *requestDescriptor_join_del = [RKRequestDescriptor requestDescriptorWithMapping:[joinMapping inverseMapping] objectClass:[Join class] rootKeyPath:nil method:RKRequestMethodDELETE];
+    [objectManager addRequestDescriptor:requestDescriptor_join_del];
     
     return YES;
 }

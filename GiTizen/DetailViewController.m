@@ -14,8 +14,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameText;
 @property (weak, nonatomic) IBOutlet UILabel *timeText;
 @property (weak, nonatomic) IBOutlet UILabel *nopText;
+@property (weak, nonatomic) IBOutlet UILabel *nojText;
 @property (weak, nonatomic) IBOutlet UILabel *addrTextView;
 @property (weak, nonatomic) IBOutlet UILabel *desTextView;
+
 
 @end
 
@@ -25,23 +27,158 @@
 @synthesize newAnnotation   = _newAnnotation;
 @synthesize locationManager = _locationManager;
 
+- (void)viewDidLoad {
+    // Do any additional setup after loading the view, typically from a nib.
+    [super viewDidLoad];
+    
+    UIBarButtonItem *joinButton = [[UIBarButtonItem alloc] initWithTitle:@"Join now!" style:UIBarButtonItemStylePlain target:self action:@selector(joinEvent)];
+    UIBarButtonItem *quitButton = [[UIBarButtonItem alloc] initWithTitle:@"Quit" style:UIBarButtonItemStylePlain target:self action:@selector(quitEvent)];
+    
+    NSArray* views = self.navigationController.viewControllers;
+    if ([views[views.count-2] class] == [EventCenterTableViewController class]) {
+        self.navigationItem.rightBarButtonItem = joinButton;
+    }
+    else if ([views[views.count-2] class] == [MyJoinedEventTableViewController class]) {
+        self.navigationItem.rightBarButtonItem = quitButton;
+    }
+    [self configureView];
+}
+
 #pragma mark - Managing the detail item
 
 - (void)setDetailItem:(Event*)newDetailItem {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
-        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Join now!" style:UIBarButtonItemStylePlain target:self action:@selector(joinEvent)];
-        self.navigationItem.rightBarButtonItem = rightButton;
         [self configureView];
     }
 }
 
-- (void)joinEvent {
-    UIAlertView* joinSuccess = [[UIAlertView alloc] initWithTitle:@"Join" message:@"Successfully joined!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [joinSuccess show];
-    [self.navigationController popViewControllerAnimated:YES];
+- (void) quitEvent {
+    [self deleteJoin];
 }
 
+- (void) deleteJoin {
+    
+    Join *joinedEvent = [NSEntityDescription insertNewObjectForEntityForName:@"Join" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.persistentStoreManagedObjectContext];
+    
+    NSString* userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userGTID"];
+    joinedEvent.gtid = userid;
+    joinedEvent.event_id = self.detailItem.object_id;
+    NSLog(@"%@", joinedEvent);
+    [[RKObjectManager sharedManager]  deleteObject:joinedEvent
+                                              path:@"/api/joins"
+                                        parameters:nil
+                                           success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                                               NSLog(@"joins successfully deleted");
+                                               UIAlertView* quitSuccess = [[UIAlertView alloc] initWithTitle:@"Quit" message:@"Successfully quited" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                                               [quitSuccess show];
+                                               [self.navigationController popViewControllerAnimated:YES];
+                                           }
+                                           failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                               NSLog(@"error occurred': %@", error);
+                                           }];
+}
+
+- (void) joinEvent {
+    [self loadJoinedEvents];
+}
+
+-(void)loadJoinedEvents
+{
+    NSString* userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userGTID"];
+    NSString* myPath = [@"/api/joins/gtid/" stringByAppendingString:userid];
+    NSString* object_id = self.detailItem.object_id;
+    
+    [[RKObjectManager sharedManager] getObjectsAtPath:myPath
+                                           parameters:nil
+                                              success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                                                  NSLog(@"successfully load joinedEvents");
+                                                  NSMutableArray* joinedEvents = [NSMutableArray new];
+                                                  joinedEvents = [NSMutableArray arrayWithArray: mappingResult.array];
+                                                  BOOL join_flag = false;
+                                                  for(Join* join in joinedEvents) {
+                                                      if([join.event_id isEqualToString: object_id]) {
+                                                          UIAlertView* joinSuccess = [[UIAlertView alloc] initWithTitle:@"Join" message:@"you have already joined this event" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                                                          [joinSuccess show];
+                                                          [self.navigationController popViewControllerAnimated:YES];
+                                                          join_flag = true;
+                                                          break;
+                                                      }
+                                                  }
+                                                  if(!join_flag){
+                                                      [self postJoin];
+                                                  }
+                                              }
+                                              failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                                  NSLog(@"error occurred': %@", error);
+                                              }];
+    
+}
+
+-(void) postJoin {
+    
+    Join* joinedEvent = [NSEntityDescription insertNewObjectForEntityForName:@"Join" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.persistentStoreManagedObjectContext];
+    
+    NSString* userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userGTID"];
+    joinedEvent.gtid = userid;
+    joinedEvent.event_id = self.detailItem.object_id;
+    
+    [[RKObjectManager sharedManager]    postObject:joinedEvent
+                                              path:@"/api/joins"
+                                        parameters:nil
+                                           success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                                               NSLog(@"Joined event post succeeded");
+                                               [self loadandUpdateEvent];
+                                           }
+                                           failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                               NSLog(@"error occurred': %@", error);
+                                           }];
+}
+
+-(void)loadandUpdateEvent
+{
+    NSString* myPath = [@"/api/events/" stringByAppendingString:self.detailItem.object_id];
+
+    [[RKObjectManager sharedManager] getObjectsAtPath:myPath
+                                           parameters:nil
+                                              success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                                                  NSLog(@"Successfully load jointed event");
+                                                  Event* event = mappingResult.firstObject;
+                                                  int num = [event.number_joined intValue];
+                                                  NSLog(@"num: %d", num);
+                                                  if(num >= [event.number_of_peo intValue]) {
+                                                      UIAlertView* joinSuccess = [[UIAlertView alloc] initWithTitle:@"Join" message:@"Sorry, no more seats available" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                                                      [joinSuccess show];
+                                                      [self.navigationController popViewControllerAnimated:YES];
+                                                  }
+                                                  else {
+                                                      event.number_joined = [NSString stringWithFormat:@"%ld", (long)(num+1)];
+                                                      NSLog(@"no. of joined: %@", event.number_joined);
+                                                      [self putEvent: event];
+                                                      UIAlertView* joinSuccess = [[UIAlertView alloc] initWithTitle:@"Join" message:@"Successfully joined!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                                                      [joinSuccess show];
+                                                      [self.navigationController popViewControllerAnimated:YES];
+                                                  }
+                                              }
+                                              failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                                  NSLog(@"error occurred': %@", error);
+                                              }];
+}
+
+-(void)putEvent: (Event*) eventToPut
+{
+    
+    NSString* path = [@"/api/events/" stringByAppendingString:eventToPut.object_id];
+    [[RKObjectManager sharedManager]       putObject:eventToPut
+                                                path:path
+                                          parameters:nil
+                                             success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                                                 NSLog(@"Successfully updated with number_joined incremented");
+                                             }
+                                             failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                                 NSLog(@"error occurred': %@", error);
+                                             }];
+}
 
 - (void)configureView {
     // Update the user interface for the detail item.
@@ -50,30 +187,17 @@
         self.nameText.text = self.detailItem.g_loc_name;
         self.timeText.text = self.detailItem.starttime;
         self.nopText.text = self.detailItem.number_of_peo;
+        self.nojText.text = self.detailItem.number_joined;
         self.addrTextView.text = self.detailItem.g_loc_addr;
         self.desTextView.text = @"All welcome!!";
     }
 }
 
-- (void)viewDidLoad {
-    // Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
-    
-    CLLocation *currentLocation = [[CLLocation alloc] initWithLatitude:self.mapView.userLocation.coordinate.latitude
-                                                             longitude:self.mapView.userLocation.coordinate.longitude];
-    
-    [self setCurrentLocation:currentLocation];
-    
-    //[currentLocation release];
-    [super viewDidLoad];
-
-    
-}
 
 - (void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
-
+    
     self.locationManager = [[CLLocationManager alloc] init];
     
     self.locationManager.delegate        = self;
@@ -81,12 +205,10 @@
     
     [self.locationManager startUpdatingLocation];
     CGRect  viewRect = CGRectMake(0, (self.view.frame.size.height)*2/3, (self.view.frame.size.width), (self.view.frame.size.height)/3);
-    self.mapView                   = [[MKMapView alloc] initWithFrame:viewRect];//(self.view.frame.size.width), (self.view.frame.size.height)
+    self.mapView                   = [[MKMapView alloc] initWithFrame:viewRect];
     self.mapView.delegate          = self;
-    //self.mapView.autoresizingMask  = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.mapView.showsUserLocation = YES;
     
-    //self.view = self.mapView;
     [self.view addSubview:self.mapView];
     [self.view bringSubviewToFront:self.mapView];
     
@@ -100,30 +222,26 @@
     
     self.newAnnotation = [Annotation annotationWithCoordinate:firstLocation.coordinate];
     
-    //[firstLocation release];
-    
     self.newAnnotation.title    = self.detailItem.g_loc_name;
-    //self.newAnnotation.subtitle = @"Phoenix Office SubTitle";
     
     [poiAnnotationArray addObject:self.newAnnotation];
     
     [selected addObject:self.newAnnotation];
     
-    self.newAnnotation = nil;
     
     [self.mapView addAnnotations:poiAnnotationArray];
-    
-    /**
-     * This should have called out the first annotation in the array?
-     */
     self.mapView.selectedAnnotations = selected;
     
-    //[selected release];
+    MKCoordinateRegion newRegion;
+    newRegion.center.latitude = poiOneLat;
+    newRegion.center.longitude = poiOneLong;
+    newRegion.span.latitudeDelta = 0.01;
+    newRegion.span.longitudeDelta = 0.01;
     
-    //[poiAnnotationArray release];
+    [self.mapView setRegion:newRegion animated:YES];
+    
 }
 
-// Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }
@@ -133,64 +251,6 @@
 }
 
 - (void)viewDidUnload {
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
 }
-
-#pragma mark MapView delegate/datasourec methods
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    
-    MKPinAnnotationView *view = nil; // return nil for the current user location
-    
-    if (annotation != mapView.userLocation) {
-        
-        view = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"identifier"];
-        
-        if (nil == view) {
-            
-            view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"identifier"];
-            view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        }
-        
-        [view setPinColor:MKPinAnnotationColorPurple];
-        [view setCanShowCallout:YES];
-        [view setAnimatesDrop:YES];
-        
-    } else {
-        
-        CLLocation *location = [[CLLocation alloc] initWithLatitude:mapView.userLocation.coordinate.latitude
-                                                          longitude:mapView.userLocation.coordinate.longitude];
-        [self setCurrentLocation:location];
-        [view setPinColor:MKPinAnnotationColorGreen];
-        [view setCanShowCallout:YES];
-        [view setAnimatesDrop:YES];
-    }
-    return view;
-}
-
-#pragma mark -
-#pragma mark CoreLocation Delegate Methods
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    [self.locationManager stopUpdatingLocation];
-}
-
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    [self.locationManager stopUpdatingLocation];
-}
-
-#pragma mark -
-#pragma mark Custom Methods
-- (void)setCurrentLocation:(CLLocation *)location {
-    
-    MKCoordinateRegion region = {{0.0f, 0.0f}, {0.0f, 0.0f}};
-    
-    region.center = location.coordinate;
-    
-    region.span.longitudeDelta = kDeltaLat;
-    region.span.latitudeDelta  = kDeltaLong;
-    
-    [self.mapView setRegion:region animated:YES];
-    [self.mapView regionThatFits:region];
-}
-
 @end

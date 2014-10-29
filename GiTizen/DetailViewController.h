@@ -9,13 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Event.h"
 #import "EventCenterTableViewController.h"
+#import "MyJoinedEventTableViewController.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "Annotation.h"
+#import "Join.h"
 
-/**
- * Change these values for region zooming when the map loads
- */
 #define kDeltaLat 1.0f
 #define kDeltaLong 1.0f
 @interface DetailViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate, CLLocationManagerDelegate> {
@@ -31,7 +30,6 @@
 @property (strong, nonatomic, getter=theNewAnnotation) Annotation *newAnnotation;
 @property (nonatomic, retain) CLLocationManager *locationManager;
 
-- (void)setCurrentLocation:(CLLocation *)location;
+//- (void)setCurrentLocation:(CLLocation *)location;
 
 @end
-

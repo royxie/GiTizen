@@ -65,14 +65,16 @@
         self.eventToPost.g_loc_icon = self.gPlace.icon;
         self.eventToPost.g_loc_lat = self.gPlace.latitude;
         self.eventToPost.g_loc_lon = self.gPlace.longitude;
-        
-        NSString* userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userGTID"];
-        self.eventToPost.gtid = userid;
-        //NSLog(@"longtitude: %@, altitude: %@",self.gPlace.longitude, self.gPlace.latitude);
     }
+    
+    NSString* userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userGTID"];
+    self.eventToPost.gtid = userid;
+    //NSLog(@"longtitude: %@, altitude: %@",self.gPlace.longitude, self.gPlace.latitude);
+
     self.eventToPost.category = self.categoryStr.text;
     self.eventToPost.starttime = self.timeStr.text;
     self.eventToPost.number_of_peo = self.nopStr.text;
+    self.eventToPost.number_joined = [NSString stringWithFormat:@"%ld", (long)0];
     self.eventToPost.desc = self.descStr.text;
     
     [[RKObjectManager sharedManager]    postObject:self.eventToPost

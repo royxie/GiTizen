@@ -43,6 +43,9 @@
 		C990FD5619FCCC0B00CD8DA8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C990FD5519FCCC0B00CD8DA8 /* User.m */; };
 		C990FD5919FCCC0B00CD8DA8 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C990FD5819FCCC0B00CD8DA8 /* Event.m */; };
 		C9AD7E4319FC9B9C00CE15C9 /* MyEventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AD7E4219FC9B9C00CE15C9 /* MyEventTableViewController.m */; };
+		C9C01A2F1A00807500EC3819 /* EventTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C01A2E1A00807500EC3819 /* EventTabBarController.m */; };
+		C9C01A321A009C2C00EC3819 /* Join.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C01A311A009C2C00EC3819 /* Join.m */; };
+		C9C01A351A00A57F00EC3819 /* MyJoinedEventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C01A341A00A57F00EC3819 /* MyJoinedEventTableViewController.m */; };
 		C9C71B9819F4E13900557A49 /* PostEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C71B9719F4E13900557A49 /* PostEventViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +120,12 @@
 		C990FD5819FCCC0B00CD8DA8 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C9AD7E4119FC9B9C00CE15C9 /* MyEventTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyEventTableViewController.h; sourceTree = "<group>"; };
 		C9AD7E4219FC9B9C00CE15C9 /* MyEventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyEventTableViewController.m; sourceTree = "<group>"; };
+		C9C01A2D1A00807500EC3819 /* EventTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTabBarController.h; sourceTree = "<group>"; };
+		C9C01A2E1A00807500EC3819 /* EventTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTabBarController.m; sourceTree = "<group>"; };
+		C9C01A301A009C2C00EC3819 /* Join.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Join.h; sourceTree = "<group>"; };
+		C9C01A311A009C2C00EC3819 /* Join.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Join.m; sourceTree = "<group>"; };
+		C9C01A331A00A57F00EC3819 /* MyJoinedEventTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyJoinedEventTableViewController.h; sourceTree = "<group>"; };
+		C9C01A341A00A57F00EC3819 /* MyJoinedEventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyJoinedEventTableViewController.m; sourceTree = "<group>"; };
 		C9C71B9619F4E13900557A49 /* PostEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostEventViewController.h; sourceTree = "<group>"; };
 		C9C71B9719F4E13900557A49 /* PostEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostEventViewController.m; sourceTree = "<group>"; };
 		DD80C2108BB3BFD5715A8598 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -208,6 +217,8 @@
 				C936155619F58B6D003AB5B8 /* PlacesRequest.m */,
 				C936155719F58B6D003AB5B8 /* Request.h */,
 				C936155819F58B6D003AB5B8 /* Request.m */,
+				C9C01A2D1A00807500EC3819 /* EventTabBarController.h */,
+				C9C01A2E1A00807500EC3819 /* EventTabBarController.m */,
 				C9C71B9619F4E13900557A49 /* PostEventViewController.h */,
 				C9C71B9719F4E13900557A49 /* PostEventViewController.m */,
 				2792180719F7EF2A00E65A26 /* DetailGViewController.h */,
@@ -222,6 +233,8 @@
 				C913E95C19F45AE1007A329C /* DetailViewController.m */,
 				C9AD7E4119FC9B9C00CE15C9 /* MyEventTableViewController.h */,
 				C9AD7E4219FC9B9C00CE15C9 /* MyEventTableViewController.m */,
+				C9C01A331A00A57F00EC3819 /* MyJoinedEventTableViewController.h */,
+				C9C01A341A00A57F00EC3819 /* MyJoinedEventTableViewController.m */,
 				C990FD4619FCB3A200CD8DA8 /* MyDetailViewController.h */,
 				C990FD4719FCB3A200CD8DA8 /* MyDetailViewController.m */,
 				C990FD4919FCB89000CD8DA8 /* UpdateEventViewController.h */,
@@ -238,6 +251,8 @@
 				C913E95719F4454C007A329C /* EventCenterTableViewCell.m */,
 				C913E95819F4454C007A329C /* EventCenterTableViewCell.xib */,
 				C990FD5119FCCAE000CD8DA8 /* GiTizen.xcdatamodeld */,
+				C9C01A301A009C2C00EC3819 /* Join.h */,
+				C9C01A311A009C2C00EC3819 /* Join.m */,
 				C990FD5719FCCC0B00CD8DA8 /* Event.h */,
 				C990FD5819FCCC0B00CD8DA8 /* Event.m */,
 				C990FD5419FCCC0B00CD8DA8 /* User.h */,
@@ -413,17 +428,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				427C64C419F37A240067F2E4 /* EventCenterTableViewController.m in Sources */,
+				C9C01A2F1A00807500EC3819 /* EventTabBarController.m in Sources */,
 				C990FD4819FCB3A200CD8DA8 /* MyDetailViewController.m in Sources */,
 				C98A1C8019F372D90067D85F /* AppDelegate.m in Sources */,
 				C913E95919F4454C007A329C /* EventCenterTableViewCell.m in Sources */,
 				2792180B19F7EF2A00E65A26 /* DetailGViewController.m in Sources */,
 				C936155C19F58B6D003AB5B8 /* PlaceOptions.m in Sources */,
+				C9C01A351A00A57F00EC3819 /* MyJoinedEventTableViewController.m in Sources */,
 				C913E95D19F45AE1007A329C /* DetailViewController.m in Sources */,
 				C936155E19F58B6D003AB5B8 /* PlacesRequest.m in Sources */,
 				C936155D19F58B6D003AB5B8 /* PlacesClient.m in Sources */,
 				C936156219F58D32003AB5B8 /* PlacesViewController.m in Sources */,
 				C990FD4B19FCB89000CD8DA8 /* UpdateEventViewController.m in Sources */,
 				C9AD7E4319FC9B9C00CE15C9 /* MyEventTableViewController.m in Sources */,
+				C9C01A321A009C2C00EC3819 /* Join.m in Sources */,
 				C990FD5919FCCC0B00CD8DA8 /* Event.m in Sources */,
 				C990FD5619FCCC0B00CD8DA8 /* User.m in Sources */,
 				277F144919FADEA2000C0FD9 /* Annotation.m in Sources */,

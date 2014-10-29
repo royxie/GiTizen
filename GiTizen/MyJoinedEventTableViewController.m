@@ -1,60 +1,52 @@
 //
-//  MyEventTableViewController.m
+//  MyJoinedEventTableViewController.m
 //  GiTizen
 //
-//  Created by XieShiyu on 25/10/14.
+//  Created by XieShiyu on 29/10/14.
 //  Copyright (c) 2014 Pangu. All rights reserved.
 //
 
-#import "MyEventTableViewController.h"
+#import "MyJoinedEventTableViewController.h"
 
-@interface MyEventTableViewController ()
+@interface MyJoinedEventTableViewController ()
 
 @property (strong, nonatomic) NSMutableArray *events;
+@property (strong, nonatomic) NSMutableArray *joinedEvents;
 @property (strong, nonatomic) EventCenterTableViewCell *eventCell;
 
 @end
 
-@implementation MyEventTableViewController
+@implementation MyJoinedEventTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self init_field];
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refresh)forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     
-    self.navigationItem.title = @"My Post";
+    self.navigationItem.title = @"My Event";
     
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filterEvents)];
     self.navigationItem.leftBarButtonItem = leftButton;
     
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(postNewEvents)];
-    self.navigationItem.rightBarButtonItem = rightButton;
-    
-    [self loadEvents];
+    [self loadJoinedEvents];
+}
+
+-(void) init_field
+{
+    self.events = [NSMutableArray new];
+    self.joinedEvents = [NSMutableArray new];
 }
 
 - (void) filterEvents {
     
 }
 
-- (void) postNewEvents {
-    [self performSegueWithIdentifier:@"post" sender:nil];
-}
-
 - (void) refresh {
-    [self loadEvents];
+    [self loadJoinedEvents];
     [self.refreshControl endRefreshing];
-}
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -134,81 +126,58 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.eventCell = [tableView cellForRowAtIndexPath:indexPath];
     
-    [self performSegueWithIdentifier:@"eventDetail" sender:nil];
-    
-    /*
-     //allocate your view controller
-     DetailViewController *detailedViewController = [[DetailViewController alloc] init];
-     
-     //push it to the navigationController
-     [[self navigationController] pushViewController:detailedViewController animated:YES];
-     //[detailedViewController setDetailItem: self.eventCell];
-     */
+    [self performSegueWithIdentifier:@"joinedEventDetail" sender:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"eventDetail"]) {
+    if ([[segue identifier] isEqualToString:@"joinedEventDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         Event *selectedEvent = self.events[indexPath.row];
         [[segue destinationViewController] setDetailItem:selectedEvent];
     }
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [self deleteEvents:indexPath];
+        [self.events removeObjectAtIndex:indexPath.row];
+        [tableView reloadData];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
 
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
-
--(void)loadEvents
+-(void)loadJoinedEvents
 {
     NSString* userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userGTID"];
-    NSString* myPath = [@"/api/events/gtid/" stringByAppendingString:userid];
-    //NSLog(@"gtid: %@", userid);
+    NSString* myPath = [@"/api/joins/gtid/" stringByAppendingString:userid];
+    
     [[RKObjectManager sharedManager] getObjectsAtPath:myPath
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                                  self.events = mappingResult.array;
+                                                  NSLog(@"successfully load joinedEvents");
+                                                  self.joinedEvents = [NSMutableArray arrayWithArray: mappingResult.array];
+                                                  [self.events removeAllObjects];
+                                                  for(Join* join in self.joinedEvents) {
+                                                      [self loadEvents: join.event_id];
+                                                  }
+                                              }
+                                              failure:^(RKObjectRequestOperation *operation, NSError *error) {
+                                                  NSLog(@"error occurred': %@", error);
+                                              }];
+    
+}
+
+-(void)loadEvents: event_id
+{
+    NSString* myPath = [@"/api/events/" stringByAppendingString:event_id];
+    [[RKObjectManager sharedManager] getObjectsAtPath:myPath
+                                           parameters:nil
+                                              success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+                                                  [self.events addObject:mappingResult.firstObject];
+                                                  NSLog(@"successfully load events");
                                                   [self.tableView reloadData];
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
@@ -219,15 +188,19 @@
 - (void)deleteEvents:(NSIndexPath *)indexPath
 {
     Event *selectedEvent = self.events[indexPath.row];
-    NSString* path = [@"/api/events/" stringByAppendingString:selectedEvent.object_id];
-    NSLog(@"%@", path);
-    [[RKObjectManager sharedManager]  deleteObject:NULL
-                                              path:path
+    Join *joinedEvent = [NSEntityDescription insertNewObjectForEntityForName:@"Join" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.persistentStoreManagedObjectContext];
+    
+    NSString* userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userGTID"];
+    joinedEvent.gtid = userid;
+    joinedEvent.event_id = selectedEvent.object_id;
+    [[RKObjectManager sharedManager]  deleteObject:joinedEvent
+                                              path:@"/api/joins"
                                         parameters:nil
                                            success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                               [self.events removeObjectAtIndex:indexPath.row];
-                                               [self.tableView reloadData];
-                                               NSLog(@"Successfully deleted");
+                                               NSLog(@"joins successfully deleted");
+                                               UIAlertView* quitSuccess = [[UIAlertView alloc] initWithTitle:@"Quit" message:@"you have quited the event" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                                               [quitSuccess show];
+                                               [self.navigationController popViewControllerAnimated:YES];
                                            }
                                            failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                NSLog(@"error occurred': %@", error);
