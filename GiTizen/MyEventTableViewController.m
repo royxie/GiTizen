@@ -125,7 +125,6 @@
     self.eventCell.categoryLabel.text = [NSString stringWithFormat:@"%@", icon];
     self.eventCell.locLabel.text = event.g_loc_name;
     self.eventCell.tsLabel.text = event.starttime;
-    self.eventCell.addrLabel.text = event.g_loc_addr;
     self.eventCell.npLabel.text = event.number_of_peo;
     self.eventCell.njLabel.text = event.number_joined;
     //NSLog(@"event is: %@",event);

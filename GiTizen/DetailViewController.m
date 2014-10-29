@@ -59,14 +59,12 @@
 
 - (void) deleteJoin {
     
-    Join *joinedEvent = [NSEntityDescription insertNewObjectForEntityForName:@"Join" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.persistentStoreManagedObjectContext];
-    
     NSString* userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userGTID"];
-    joinedEvent.gtid = userid;
-    joinedEvent.event_id = self.detailItem.object_id;
-    NSLog(@"%@", joinedEvent);
-    [[RKObjectManager sharedManager]  deleteObject:joinedEvent
-                                              path:@"/api/joins"
+    NSString* path = [[@"/api/joins/" stringByAppendingString:userid] stringByAppendingString:@"/"];
+    path = [path stringByAppendingString:self.detailItem.object_id];
+    
+    [[RKObjectManager sharedManager]  deleteObject:NULL
+                                              path:path
                                         parameters:nil
                                            success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                NSLog(@"joins successfully deleted");
@@ -79,9 +77,11 @@
                                            }];
 }
 
+
 - (void) joinEvent {
     [self loadJoinedEvents];
 }
+
 
 -(void)loadJoinedEvents
 {

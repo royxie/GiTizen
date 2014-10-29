@@ -11,7 +11,7 @@
 
 @implementation EventCenterTableViewCell
 
-@synthesize locLabel,categoryLabel,tsLabel,addrLabel,npLabel,njLabel;
+@synthesize locLabel,categoryLabel,tsLabel,npLabel,njLabel;
 
 - (void)awakeFromNib {
     // Initialization code

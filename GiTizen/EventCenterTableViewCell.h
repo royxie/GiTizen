@@ -11,7 +11,6 @@
 @interface EventCenterTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *categoryLabel;
 @property (strong, nonatomic) IBOutlet UILabel *locLabel;
-@property (strong, nonatomic) IBOutlet UILabel *addrLabel;
 @property (strong, nonatomic) IBOutlet UILabel *tsLabel;
 @property (strong, nonatomic) IBOutlet UILabel *npLabel;
 @property (strong, nonatomic) IBOutlet UILabel *njLabel;

@@ -43,6 +43,7 @@
 		C990FD5619FCCC0B00CD8DA8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C990FD5519FCCC0B00CD8DA8 /* User.m */; };
 		C990FD5919FCCC0B00CD8DA8 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = C990FD5819FCCC0B00CD8DA8 /* Event.m */; };
 		C9AD7E4319FC9B9C00CE15C9 /* MyEventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AD7E4219FC9B9C00CE15C9 /* MyEventTableViewController.m */; };
+		C9B3DEC31A019AE3001D3191 /* iTunesArtwork@2x-fix.png in Resources */ = {isa = PBXBuildFile; fileRef = C9B3DEC21A019AE3001D3191 /* iTunesArtwork@2x-fix.png */; };
 		C9C01A2F1A00807500EC3819 /* EventTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C01A2E1A00807500EC3819 /* EventTabBarController.m */; };
 		C9C01A321A009C2C00EC3819 /* Join.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C01A311A009C2C00EC3819 /* Join.m */; };
 		C9C01A351A00A57F00EC3819 /* MyJoinedEventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C01A341A00A57F00EC3819 /* MyJoinedEventTableViewController.m */; };
@@ -120,6 +121,7 @@
 		C990FD5819FCCC0B00CD8DA8 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		C9AD7E4119FC9B9C00CE15C9 /* MyEventTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyEventTableViewController.h; sourceTree = "<group>"; };
 		C9AD7E4219FC9B9C00CE15C9 /* MyEventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyEventTableViewController.m; sourceTree = "<group>"; };
+		C9B3DEC21A019AE3001D3191 /* iTunesArtwork@2x-fix.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x-fix.png"; sourceTree = "<group>"; };
 		C9C01A2D1A00807500EC3819 /* EventTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTabBarController.h; sourceTree = "<group>"; };
 		C9C01A2E1A00807500EC3819 /* EventTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTabBarController.m; sourceTree = "<group>"; };
 		C9C01A301A009C2C00EC3819 /* Join.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Join.h; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 		C98A1C7A19F372D90067D85F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C9B3DEC21A019AE3001D3191 /* iTunesArtwork@2x-fix.png */,
 				27E60C1519F5AFA100F4BEDD /* fontawesome-webfont.ttf */,
 				C9325F1A19F4A18000DD6D0F /* Info.plist */,
 				C98A1C7C19F372D90067D85F /* main.m */,
@@ -373,6 +376,7 @@
 			files = (
 				C9325F1919F49FFC00DD6D0F /* EventCenterTableViewCell.xib in Resources */,
 				C98A1C8E19F372D90067D85F /* LaunchScreen.xib in Resources */,
+				C9B3DEC31A019AE3001D3191 /* iTunesArtwork@2x-fix.png in Resources */,
 				27E60C1619F5AFA100F4BEDD /* fontawesome-webfont.ttf in Resources */,
 				C98DF94719FC82D000E7D3C5 /* Main.storyboard in Resources */,
 				C9325F1B19F4A18000DD6D0F /* Info.plist in Resources */,
