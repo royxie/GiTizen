@@ -11,15 +11,17 @@
 #import "PlacesViewController.h"
 #import <RestKit/RestKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <QuartzCore/QuartzCore.h>
+
 
 @interface UpdateEventViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *categoryStr;
-@property (weak, nonatomic) IBOutlet UITextField *timeStr;
 @property (weak, nonatomic) IBOutlet UITextField *nopStr;
 @property (weak, nonatomic) IBOutlet UITextField *titleStr;
 @property (weak, nonatomic) IBOutlet UITextView *descStr;
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
+@property (weak, nonatomic) IBOutlet UIDatePicker *myEventDatePicker;
 
 @end
 
@@ -31,18 +33,33 @@
     [self initField];
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Update" style:UIBarButtonItemStylePlain target:self action:@selector(putEvents)];
     self.navigationItem.rightBarButtonItem = rightButton;
+    [self.myEventDatePicker addTarget:self action:@selector(datePickerChanged:) forControlEvents:UIControlEventValueChanged];
+
 }
 
 - (void)initField
 {
+    [self.descStr.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
+    [self.descStr.layer setBorderWidth:2.0];
+    self.descStr.layer.cornerRadius = 5;
+    self.descStr.clipsToBounds = YES;
+    
     self.eventToPut = [NSEntityDescription insertNewObjectForEntityForName:@"Event" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.persistentStoreManagedObjectContext];
     self.titleStr.text = self.myEvent.g_loc_name;
     self.categoryStr.text = self.myEvent.category;
-    self.timeStr.text = self.myEvent.starttime;
     self.nopStr.text = self.myEvent.number_of_peo;
     self.descStr.text = self.myEvent.desc;
     
     self.eventToPut = self.myEvent;
+}
+
+- (void)datePickerChanged:(UIDatePicker *)datePicker
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM-dd-yyyy HH:mm"];
+    NSString *strDate = [dateFormatter stringFromDate:datePicker.date];
+    self.eventToPut.starttime = strDate;
+    NSLog(@"date: %@", self.eventToPut.starttime);
 }
 
 #pragma mark - Managing the event item to update
@@ -84,7 +101,6 @@
         self.eventToPut.g_loc_lon = self.gPlace.longitude;
     }
     self.eventToPut.category = self.categoryStr.text;
-    self.eventToPut.starttime = self.timeStr.text;
     self.eventToPut.number_of_peo = self.nopStr.text;
     self.eventToPut.desc = self.descStr.text;
     //NSLog(@"eventToPut.category: %@, time: %@, number_of_peo: %@, gtid: %@", self.eventToPut.category, self.eventToPut.starttime, self.eventToPut.number_of_peo, self.eventToPut.gtid);

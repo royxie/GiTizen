@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GiTizen/PostEventViewController.m"
-            timestampString = "435482435.392007"
+            timestampString = "436476833.626044"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
             landmarkName = "@interface PostEventViewController()"
             landmarkType = "2">
          </BreakpointContent>

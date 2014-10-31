@@ -11,16 +11,17 @@
 #import "PlacesViewController.h"
 #import <RestKit/RestKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface PostEventViewController ()<CLLocationManagerDelegate, UISearchBarDelegate >
 
 @property (strong, nonatomic) Event *eventToPost;
 @property (weak, nonatomic) IBOutlet UITextField *categoryStr;
-@property (weak, nonatomic) IBOutlet UITextField *timeStr;
 @property (weak, nonatomic) IBOutlet UITextField *nopStr;
 @property (weak, nonatomic) IBOutlet UITextField *titleStr;
 @property (weak, nonatomic) IBOutlet UITextView *descStr;
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
+@property (weak, nonatomic) IBOutlet UIDatePicker *eventDatePicker;
 
 @end
 
@@ -31,6 +32,7 @@
     [self initField];
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(postIt)];
     self.navigationItem.rightBarButtonItem = rightButton;
+    [self.eventDatePicker addTarget:self action:@selector(datePickerChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)initField
@@ -39,6 +41,19 @@
     //UIImage *btnImage = [UIImage imageNamed:@"image.png"];
     //[self.searchButton setImage:btnImage forState:UIControlStateNormal];
     //[self.searchButton addTarget:self action:@selector(buttonCLick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.descStr.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
+    [self.descStr.layer setBorderWidth:2.0];
+    self.descStr.layer.cornerRadius = 5;
+    self.descStr.clipsToBounds = YES;
+}
+
+- (void)datePickerChanged:(UIDatePicker *)datePicker
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM-dd-yyyy HH:mm"];
+    NSString *strDate = [dateFormatter stringFromDate:datePicker.date];
+    self.eventToPost.starttime = strDate;
+    NSLog(@"date: %@", self.eventToPost.starttime);
 }
 
 #pragma mark - Managing the Google location information item
@@ -72,7 +87,7 @@
     //NSLog(@"longtitude: %@, altitude: %@",self.gPlace.longitude, self.gPlace.latitude);
 
     self.eventToPost.category = self.categoryStr.text;
-    self.eventToPost.starttime = self.timeStr.text;
+    //self.eventToPost.starttime = self.timeStr.text;
     self.eventToPost.number_of_peo = self.nopStr.text;
     self.eventToPost.number_joined = [NSString stringWithFormat:@"%ld", (long)0];
     self.eventToPost.desc = self.descStr.text;
