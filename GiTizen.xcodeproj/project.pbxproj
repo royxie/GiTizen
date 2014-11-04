@@ -50,6 +50,12 @@
 		C9C01A321A009C2C00EC3819 /* Join.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C01A311A009C2C00EC3819 /* Join.m */; };
 		C9C01A351A00A57F00EC3819 /* MyJoinedEventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C01A341A00A57F00EC3819 /* MyJoinedEventTableViewController.m */; };
 		C9C71B9819F4E13900557A49 /* PostEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C71B9719F4E13900557A49 /* PostEventViewController.m */; };
+		C9D908AC1A08BD460036635B /* PostedEvent.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D908AB1A08BD460036635B /* PostedEvent.png */; };
+		C9D908B01A08BD600036635B /* JoinedEvent.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D908AF1A08BD600036635B /* JoinedEvent.png */; };
+		C9D908B21A08BDB40036635B /* EventCenter.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D908B11A08BDB40036635B /* EventCenter.png */; };
+		C9D908B81A08C1040036635B /* EventCenter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D908B51A08C1040036635B /* EventCenter@2x.png */; };
+		C9D908B91A08C1040036635B /* JoinedEvent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D908B61A08C1040036635B /* JoinedEvent@2x.png */; };
+		C9D908BA1A08C1040036635B /* PostedEvent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D908B71A08C1040036635B /* PostedEvent@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +141,12 @@
 		C9C01A341A00A57F00EC3819 /* MyJoinedEventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyJoinedEventTableViewController.m; sourceTree = "<group>"; };
 		C9C71B9619F4E13900557A49 /* PostEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostEventViewController.h; sourceTree = "<group>"; };
 		C9C71B9719F4E13900557A49 /* PostEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostEventViewController.m; sourceTree = "<group>"; };
+		C9D908AB1A08BD460036635B /* PostedEvent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PostedEvent.png; sourceTree = "<group>"; };
+		C9D908AF1A08BD600036635B /* JoinedEvent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JoinedEvent.png; sourceTree = "<group>"; };
+		C9D908B11A08BDB40036635B /* EventCenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EventCenter.png; sourceTree = "<group>"; };
+		C9D908B51A08C1040036635B /* EventCenter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EventCenter@2x.png"; sourceTree = "<group>"; };
+		C9D908B61A08C1040036635B /* JoinedEvent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoinedEvent@2x.png"; sourceTree = "<group>"; };
+		C9D908B71A08C1040036635B /* PostedEvent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PostedEvent@2x.png"; sourceTree = "<group>"; };
 		DD80C2108BB3BFD5715A8598 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		EC48A2D77F59DE828AC92C1A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -208,6 +220,7 @@
 		C98A1C7919F372D90067D85F /* GiTizen */ = {
 			isa = PBXGroup;
 			children = (
+				C9D908AA1A08BD350036635B /* Icons */,
 				C98DF94019FC314300E7D3C5 /* Place.h */,
 				C98DF94119FC314300E7D3C5 /* Place.m */,
 				277F144719FADEA2000C0FD9 /* Annotation.h */,
@@ -299,6 +312,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C9D908AA1A08BD350036635B /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				C9D908B51A08C1040036635B /* EventCenter@2x.png */,
+				C9D908B61A08C1040036635B /* JoinedEvent@2x.png */,
+				C9D908B71A08C1040036635B /* PostedEvent@2x.png */,
+				C9D908B11A08BDB40036635B /* EventCenter.png */,
+				C9D908AF1A08BD600036635B /* JoinedEvent.png */,
+				C9D908AB1A08BD460036635B /* PostedEvent.png */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -384,12 +410,18 @@
 			files = (
 				C9325F1919F49FFC00DD6D0F /* EventCenterTableViewCell.xib in Resources */,
 				C98A1C8E19F372D90067D85F /* LaunchScreen.xib in Resources */,
+				C9D908BA1A08C1040036635B /* PostedEvent@2x.png in Resources */,
 				C9B3DEC31A019AE3001D3191 /* iTunesArtwork@2x-fix.png in Resources */,
+				C9D908B01A08BD600036635B /* JoinedEvent.png in Resources */,
+				C9D908AC1A08BD460036635B /* PostedEvent.png in Resources */,
 				27E60C1619F5AFA100F4BEDD /* fontawesome-webfont.ttf in Resources */,
+				C9D908B81A08C1040036635B /* EventCenter@2x.png in Resources */,
 				C98DF94719FC82D000E7D3C5 /* Main.storyboard in Resources */,
 				42D7F6E41A05CCB700C5E3BC /* clockicon.png in Resources */,
 				C9325F1B19F4A18000DD6D0F /* Info.plist in Resources */,
 				C98A1C8B19F372D90067D85F /* Images.xcassets in Resources */,
+				C9D908B91A08C1040036635B /* JoinedEvent@2x.png in Resources */,
+				C9D908B21A08BDB40036635B /* EventCenter.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
