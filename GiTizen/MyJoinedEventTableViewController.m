@@ -173,17 +173,19 @@
     return 40.0f;
 }
 
+/*
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [self deleteEvents:indexPath];
-        [self.events removeObjectAtIndex:indexPath.row];
-        [tableView reloadData];
+        if (indexPath.section == 0) {
+            [self deleteEvents: self.l_events atIndexPath: indexPath];
+        }
+        else [self deleteEvents: self.p_events atIndexPath: indexPath];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
+*/
 
 -(void)loadJoinedEvents
 {
@@ -250,30 +252,6 @@
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   NSLog(@"error occurred': %@", error);
                                               }];
-}
-
-- (void)deleteEvents:(NSIndexPath *)indexPath
-{
-    Event *selectedEvent = self.events[indexPath.row];
-    Join *joinedEvent = [NSEntityDescription insertNewObjectForEntityForName:@"Join" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.persistentStoreManagedObjectContext];
-    
-    NSString* userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userGTID"];
-    joinedEvent.gtid = userid;
-    joinedEvent.event_id = selectedEvent.object_id;
-    [[RKObjectManager sharedManager]  deleteObject:joinedEvent
-                                              path:@"/api/joins"
-                                        parameters:nil
-                                           success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                               NSLog(@"joins successfully deleted");
-                                               UIAlertView* quitSuccess = [[UIAlertView alloc] initWithTitle:@"Quit" message:@"you have quited the event" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                                               [quitSuccess show];
-                                               [self.navigationController popViewControllerAnimated:YES];
-                                           }
-                                           failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                                               NSLog(@"error occurred': %@", error);
-                                           }];
-    
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

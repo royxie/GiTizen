@@ -18,6 +18,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self loadTabBar];
+    
+    //EventTabBarController* tabviewController = [EventTabBarController new];
+    //self.window.rootViewController = tabviewController;
+    //[self.window makeKeyAndVisible];
 }
 
 -(void) loadTabBar {
@@ -26,9 +30,9 @@
     UITabBarItem *postTabBarItem = [tabBar.items objectAtIndex:1];
     UITabBarItem *joinTabBarItem = [tabBar.items objectAtIndex:2];
     
-    centerTabBarItem.title = @"Event Center";
-    postTabBarItem.title = @"Posted Event";
-    joinTabBarItem.title = @"Joined Event";
+    centerTabBarItem.title = @"Center";
+    postTabBarItem.title = @"My Post";
+    joinTabBarItem.title = @"My Join";
     
     [centerTabBarItem setImage:[UIImage imageNamed:@"EventCenter"]];
     [postTabBarItem setImage:[UIImage imageNamed:@"PostedEvent"]];
