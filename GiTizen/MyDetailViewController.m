@@ -64,7 +64,7 @@
         self.nopText.text = self.detailItem.number_of_peo;
         self.nojText.text = self.detailItem.number_joined;
         self.addrTextView.text = self.detailItem.g_loc_addr;
-        self.desTextView.text = @"All welcome!!";
+        self.desTextView.text = self.detailItem.desc;
     }
 }
 

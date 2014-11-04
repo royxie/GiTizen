@@ -12,6 +12,7 @@
 @interface EventCenterTableViewController ()
 
 @property (strong, nonatomic) NSMutableArray *events;
+@property (strong, nonatomic) NSMutableArray *l_events;
 @property (strong, nonatomic) EventCenterTableViewCell *eventCell;
 
 @end
@@ -20,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self init_field];
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(refresh)forControlEvents:UIControlEventValueChanged];
@@ -34,6 +36,11 @@
     self.navigationItem.rightBarButtonItem = rightButton;
     
     [self loadEvents];
+}
+
+-(void) init_field {
+    self.events = [NSMutableArray new];
+    self.l_events = [NSMutableArray new];
 }
 
 - (void) filterEvents {
@@ -74,7 +81,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return self.events.count;
+    return self.l_events.count;
 }
 
 
@@ -83,14 +90,14 @@
     
     self.eventCell = [[[NSBundle mainBundle] loadNibNamed:@"EventCenterTableViewCell" owner:self options:nil] lastObject];
 
-    [self configureCell:self.eventCell atIndexPath:indexPath];
+    [self configureCell:self.l_events atIndexPath:indexPath];
     
     return self.eventCell;
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(NSMutableArray*)evts atIndexPath:(NSIndexPath *)indexPath
 {
-    Event *event = self.events[indexPath.row];
+    Event *event = evts[indexPath.row];
     
     //self.eventCell.categoryLabel.text = event.category;
     //id food  = [NSString fontAwesomeIconStringForEnum:FAIconBook];
@@ -141,7 +148,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"eventDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        Event *selectedEvent = self.events[indexPath.row];
+        Event *selectedEvent = self.l_events[indexPath.row];
         [[segue destinationViewController] setDetailItem:selectedEvent];
     }
 }
@@ -161,23 +168,6 @@
 }
 */
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 -(void)loadEvents
 {
@@ -185,6 +175,24 @@
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                   self.events = mappingResult.array;
+                                                  [self.l_events removeAllObjects];
+                                                  
+                                                  NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+                                                  dateFormatter.dateFormat = @"MM-dd-yyyy HH:mm";
+                                                  NSDate *now = [NSDate date];
+                                                  for(Event* evt in self.events) {
+                                                      NSDate * date = [dateFormatter dateFromString:evt.starttime];
+                                                      if ([date compare:now] > 0) {
+                                                          [self.l_events addObject:evt];
+                                                      }
+                                                  }
+                                                  [self.l_events sortUsingComparator:^NSComparisonResult(Event* a, Event* b) {
+                                                      
+                                                      NSDate *date1 = [dateFormatter dateFromString:a.starttime];
+                                                      NSDate *date2 = [dateFormatter dateFromString:b.starttime];
+                                                      
+                                                      return [date1 compare:date2];
+                                                  }];
                                                   [self.tableView reloadData];
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {

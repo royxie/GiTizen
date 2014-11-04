@@ -27,7 +27,7 @@
     [refreshControl addTarget:self action:@selector(refresh)forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     
-    self.navigationItem.title = @"My Post";
+    self.navigationItem.title = @"My Posted Events";
     
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filterEvents)];
     self.navigationItem.leftBarButtonItem = leftButton;
@@ -39,6 +39,7 @@
 }
 
 -(void) init_field {
+    self.events = [NSMutableArray new];
     self.p_events = [NSMutableArray new];
     self.l_events = [NSMutableArray new];
 }
@@ -200,9 +201,10 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [self deleteEvents:indexPath];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
@@ -222,36 +224,17 @@
  }
  */
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
 
 -(void)loadEvents
 {
     NSString* userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userGTID"];
     NSString* myPath = [@"/api/events/gtid/" stringByAppendingString:userid];
-    //NSLog(@"gtid: %@", userid);
     [[RKObjectManager sharedManager] getObjectsAtPath:myPath
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                   self.events = mappingResult.array;
                                                   NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-                                                  [self.events sortUsingComparator:^NSComparisonResult(Event* a, Event* b) {
-
-                                                      dateFormatter.dateFormat = @"MM-dd-yyyy HH:mm";
-                                                      
-                                                      NSDate *date1 = [dateFormatter dateFromString:a.starttime];
-                                                      NSDate *date2 = [dateFormatter dateFromString:b.starttime];
-                                                      
-                                                      return [date1 compare:date2];
-                                                  }];
+                                                  dateFormatter.dateFormat = @"MM-dd-yyyy HH:mm";
                                                   
                                                   [self.p_events removeAllObjects];
                                                   [self.l_events removeAllObjects];
@@ -264,6 +247,20 @@
                                                       }
                                                       else [self.l_events addObject:evt];
                                                   }
+                                                  [self.l_events sortUsingComparator:^NSComparisonResult(Event* a, Event* b) {
+                                                      
+                                                      NSDate *date1 = [dateFormatter dateFromString:a.starttime];
+                                                      NSDate *date2 = [dateFormatter dateFromString:b.starttime];
+                                                      
+                                                      return [date1 compare:date2];
+                                                  }];
+                                                  [self.p_events sortUsingComparator:^NSComparisonResult(Event* a, Event* b) {
+                                                      
+                                                      NSDate *date1 = [dateFormatter dateFromString:a.starttime];
+                                                      NSDate *date2 = [dateFormatter dateFromString:b.starttime];
+                                                      
+                                                      return [date2 compare:date1];
+                                                  }];
                                                   
                                                   [self.tableView reloadData];
                                               }

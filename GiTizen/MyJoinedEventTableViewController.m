@@ -28,7 +28,7 @@
     [refreshControl addTarget:self action:@selector(refresh)forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     
-    self.navigationItem.title = @"My Event";
+    self.navigationItem.title = @"My Joined Events";
     
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filterEvents)];
     self.navigationItem.leftBarButtonItem = leftButton;
@@ -194,12 +194,14 @@
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                   NSLog(@"successfully load joinedEvents");
-                                                  self.joinedEvents = [NSMutableArray arrayWithArray: mappingResult.array];
+                                                  self.joinedEvents = mappingResult.array;
                                                   [self.events removeAllObjects];
                                                   [self.p_events removeAllObjects];
                                                   [self.l_events removeAllObjects];
+                                                  int num = [self.joinedEvents count];
+                                                  int count = 0;
                                                   for(Join* join in self.joinedEvents) {
-                                                      [self loadEvents: join.event_id];
+                                                      [self loadEvents: join.event_id inTotalNum: num];
                                                   }
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
@@ -208,7 +210,7 @@
     
 }
 
--(void)loadEvents: event_id
+-(void)loadEvents: (NSString*)event_id inTotalNum: (int) numOfEvent
 {
     NSString* myPath = [@"/api/events/" stringByAppendingString:event_id];
     [[RKObjectManager sharedManager] getObjectsAtPath:myPath
@@ -216,17 +218,34 @@
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                   Event* evt = mappingResult.firstObject;
                                                   [self.events addObject:evt];
+                                                  int count = [self.events count];
                                                   NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
                                                   dateFormatter.dateFormat = @"MM-dd-yyyy HH:mm";
                                                   NSDate *now = [NSDate date];
                                                   NSDate * date = [dateFormatter dateFromString:evt.starttime];
                                                   if ([date compare:now] <= 0) {
-                                                      //self.p_events = [self.events subarrayWithRange:NSMakeRange(0, 10)];
                                                       [self.p_events addObject:evt];
                                                   }
                                                   else [self.l_events addObject:evt];
                                                   NSLog(@"successfully load events");
-                                                  [self.tableView reloadData];
+                                                  //NSLog(@"numofevent: %d, count: %d", numOfEvent, count);
+                                                  if(count>=numOfEvent) {
+                                                      [self.l_events sortUsingComparator:^NSComparisonResult(Event* a, Event* b) {
+                                                          
+                                                          NSDate *date1 = [dateFormatter dateFromString:a.starttime];
+                                                          NSDate *date2 = [dateFormatter dateFromString:b.starttime];
+                                                          
+                                                          return [date1 compare:date2];
+                                                      }];
+                                                      [self.p_events sortUsingComparator:^NSComparisonResult(Event* a, Event* b) {
+                                                          
+                                                          NSDate *date1 = [dateFormatter dateFromString:a.starttime];
+                                                          NSDate *date2 = [dateFormatter dateFromString:b.starttime];
+                                                          
+                                                          return [date2 compare:date1];
+                                                      }];
+                                                      [self.tableView reloadData];
+                                                  }
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   NSLog(@"error occurred': %@", error);
