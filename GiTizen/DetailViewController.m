@@ -108,6 +108,13 @@
     NSString* myPath = [@"/api/joins/gtid/" stringByAppendingString:userid];
     NSString* object_id = self.detailItem.object_id;
     
+    if ([userid isEqualToString: self.detailItem.gtid]) {
+        UIAlertView* joinSuccess = [[UIAlertView alloc] initWithTitle:@"Join" message:@"you have already joined this event" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [joinSuccess show];
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    
     [[RKObjectManager sharedManager] getObjectsAtPath:myPath
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
@@ -133,6 +140,7 @@
                                               }];
     
 }
+
 
 -(void) postJoin {
     

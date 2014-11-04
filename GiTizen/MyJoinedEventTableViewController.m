@@ -200,10 +200,14 @@
                                                   [self.events removeAllObjects];
                                                   [self.p_events removeAllObjects];
                                                   [self.l_events removeAllObjects];
-                                                  int num = [self.joinedEvents count];
-                                                  int count = 0;
+                                                  int num = 0;
                                                   for(Join* join in self.joinedEvents) {
-                                                      [self loadEvents: join.event_id inTotalNum: num];
+                                                      if(join.event_id != nil) num++;
+                                                  }
+                                                  for(Join* join in self.joinedEvents) {
+                                                      if(join.event_id != nil) {
+                                                          [self loadEvents: join.event_id inTotalNum: num];
+                                                      }
                                                   }
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {

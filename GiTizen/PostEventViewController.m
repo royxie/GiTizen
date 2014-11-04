@@ -141,32 +141,12 @@
                                         parameters:nil
                                            success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                NSLog(@"Post succeeded");
-                                               [self postJoin];
                                            }
                                            failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                NSLog(@"error occurred': %@", error);
                                            }];
     
     [self.navigationController popViewControllerAnimated:YES];
-}
-
--(void) postJoin {
-    
-    Join* joinedEvent = [NSEntityDescription insertNewObjectForEntityForName:@"Join" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.persistentStoreManagedObjectContext];
-    
-    NSString* userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userGTID"];
-    joinedEvent.gtid = userid;
-    joinedEvent.event_id = self.eventToPost.object_id;
-    
-    [[RKObjectManager sharedManager]    postObject:joinedEvent
-                                              path:@"/api/joins"
-                                        parameters:nil
-                                           success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                               NSLog(@"Joined event post succeeded");
-                                           }
-                                           failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                                               NSLog(@"error occurred': %@", error);
-                                           }];
 }
 
 - (void)didReceiveMemoryWarning {

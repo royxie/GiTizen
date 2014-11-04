@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GiTizen/DetailViewController.m"
-            timestampString = "436768601.421896"
+            timestampString = "436810668.528686"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "-increaseJoinAndUpdateEvent"
             landmarkType = "5">
          </BreakpointContent>
