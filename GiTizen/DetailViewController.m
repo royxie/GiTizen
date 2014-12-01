@@ -91,6 +91,7 @@
                                                   event.number_joined = [NSString stringWithFormat:@"%ld", (long)(num-1)];
                                                   NSLog(@"no. of joined: %@", event.number_joined);
                                                   [ProgressHUD showSuccess:@"Successfully quited"];
+                                                  [self.navigationController popViewControllerAnimated:YES];
                                                   /*
                                                   UIAlertView* quitSuccess = [[UIAlertView alloc] initWithTitle:@"Quit" message:@"Successfully quited" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                                                   [quitSuccess show];
@@ -117,7 +118,7 @@
     
     [ProgressHUD show:@"Please wait…"];
     if ([userid isEqualToString: self.detailItem.gtid]) {
-        [ProgressHUD showSuccess:@"you have already joined this event"];
+        [ProgressHUD showError:@"you have already joined this event"];
         /*
         UIAlertView* joinSuccess = [[UIAlertView alloc] initWithTitle:@"Join" message:@"you have already joined this event" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [joinSuccess show];
@@ -135,7 +136,7 @@
                                                   BOOL join_flag = false;
                                                   for(Join* join in joinedEvents) {
                                                       if([join.event_id isEqualToString: object_id]) {
-                                                          [ProgressHUD showSuccess:@"you have already joined this event"];
+                                                          [ProgressHUD showError:@"you have already joined this event"];
                                                           /*
                                                           UIAlertView* joinSuccess = [[UIAlertView alloc] initWithTitle:@"Join" message:@"you have already joined this event" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                                                           [joinSuccess show];
@@ -188,15 +189,19 @@
                                                   int num = [event.number_joined intValue];
                                                   NSLog(@"num: %d", num);
                                                   if(num >= [event.number_of_peo intValue]) {
+                                                      [ProgressHUD showError:@"Sorry, no more seats available"];
+                                                      /*
                                                       UIAlertView* joinSuccess = [[UIAlertView alloc] initWithTitle:@"Join" message:@"Sorry, no more seats available" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                                                       [joinSuccess show];
                                                       [self.navigationController popViewControllerAnimated:YES];
+                                                       */
                                                   }
                                                   else {
                                                       event.number_joined = [NSString stringWithFormat:@"%ld", (long)(num+1)];
                                                       NSLog(@"no. of joined: %@", event.number_joined);
                                                       [self putEvent: event];
                                                       [ProgressHUD showSuccess:@"Successfully joined!"];
+                                                      [self.navigationController popViewControllerAnimated:YES];
                                                       /*
                                                       UIAlertView* joinSuccess = [[UIAlertView alloc] initWithTitle:@"Join" message:@"Successfully joined!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                                                       [joinSuccess show];

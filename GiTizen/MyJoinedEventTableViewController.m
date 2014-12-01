@@ -221,6 +221,7 @@
                                                           [self loadEvents: join.event_id inTotalNum: num];
                                                       }
                                                   }
+                                                  [self.tableView reloadData];
                                                   [ProgressHUD dismiss];
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
