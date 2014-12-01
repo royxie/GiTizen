@@ -31,12 +31,9 @@
     
     self.navigationItem.title = @"My Post";
     
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filterEvents)];
-    self.navigationItem.leftBarButtonItem = leftButton;
-    
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(postNewEvents)];
     self.navigationItem.rightBarButtonItem = rightButton;
-    
+     
     //[self loadEvents];
 }
 
@@ -46,6 +43,7 @@
     self.l_events = [NSMutableArray new];
 }
 
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -53,12 +51,9 @@
         LoginUser(self);
     
     [self loadEvents];
-    [self.tableView reloadData];
 }
 
-- (void) filterEvents {
-    
-}
+
 
 - (void) postNewEvents {
     [self performSegueWithIdentifier:@"post" sender:nil];

@@ -31,9 +31,6 @@
     
     self.navigationItem.title = @"My Join";
     
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filterEvents)];
-    self.navigationItem.leftBarButtonItem = leftButton;
-    
     //[self loadJoinedEvents];
 }
 
@@ -45,6 +42,7 @@
     self.l_events = [NSMutableArray new];
 }
 
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -52,9 +50,9 @@
         LoginUser(self);
     
     [self loadJoinedEvents];
-    [self.tableView reloadData];
 }
 
+ 
 - (void) filterEvents {
     
 }
@@ -184,19 +182,7 @@
     return 40.0f;
 }
 
-/*
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        if (indexPath.section == 0) {
-            [self deleteEvents: self.l_events atIndexPath: indexPath];
-        }
-        else [self deleteEvents: self.p_events atIndexPath: indexPath];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
-}
-*/
+
 
 -(void)loadJoinedEvents
 {
@@ -213,15 +199,19 @@
                                                   [self.p_events removeAllObjects];
                                                   [self.l_events removeAllObjects];
                                                   int num = 0;
+                                                  BOOL flag = NO;
                                                   for(Join* join in self.joinedEvents) {
                                                       if(join.event_id != nil) num++;
                                                   }
                                                   for(Join* join in self.joinedEvents) {
                                                       if(join.event_id != nil) {
+                                                          flag = YES;
                                                           [self loadEvents: join.event_id inTotalNum: num];
                                                       }
                                                   }
-                                                  [self.tableView reloadData];
+                                                  if (flag == NO) {
+                                                      [self.tableView reloadData];
+                                                  }
                                                   [ProgressHUD dismiss];
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
@@ -266,6 +256,7 @@
                                                           
                                                           return [date2 compare:date1];
                                                       }];
+                                                       NSLog(@"table reloaded");
                                                       [self.tableView reloadData];
                                                       [ProgressHUD dismiss];
                                                   }

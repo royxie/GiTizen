@@ -55,7 +55,6 @@
         LoginUser(self);
     
     [self loadEvents];
-    [self.tableView reloadData];
 }
 
 
