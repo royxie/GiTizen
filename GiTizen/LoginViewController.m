@@ -6,37 +6,40 @@
 //  Copyright (c) 2014 Pangu. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "LoginViewController.h"
+#import "LoginView.h"
 #import "User.h"
 #import <RestKit/RestKit.h>
 
-@interface ViewController ()
+@interface LoginViewController ()
 
 @property (strong, nonatomic) User* userToPost;
+
 @property (weak, nonatomic) IBOutlet UITextField *Username;
+
 @property (weak, nonatomic) IBOutlet UITextField *Firstname;
+
 @property (weak, nonatomic) IBOutlet UITextField *Lastname;
+
 @property (weak, nonatomic) IBOutlet UITextField *GTID;
+
 @property (weak, nonatomic) IBOutlet UILabel *WelcomeMessage;
 
 @end
 
-@implementation ViewController
+@implementation LoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initField];
-    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"username"]) {
-        NSString* Userinfo = [[NSUserDefaults standardUserDefaults] stringForKey:@"username"];
-        [self.WelcomeMessage setText:[NSString stringWithFormat:@"Welcome back, %@",Userinfo]];
-        [self.Username setText:Userinfo];
-        NSString* Userfirstname = [[NSUserDefaults standardUserDefaults] stringForKey:@"userFirstName"];
-        [self.Firstname setText:Userfirstname];
-        NSString* Userlastname = [[NSUserDefaults standardUserDefaults] stringForKey:@"userLastName"];
-        [self.Lastname setText:Userlastname];
-        NSString* UserGTID = [[NSUserDefaults standardUserDefaults] stringForKey:@"userGTID"];
-        [self.GTID setText:UserGTID];
-    }
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+{
+    [super viewDidAppear:animated];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[LoginView alloc] init]];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (void)initField

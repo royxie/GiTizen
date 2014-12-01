@@ -16,6 +16,25 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    // Initialize navigation bar throughout the app
+    [[UINavigationBar appearance] setTitleTextAttributes: @{
+                                                           NSForegroundColorAttributeName:
+                                                               [UIColor whiteColor],
+                                                           NSFontAttributeName:
+                                                               [UIFont fontWithName:@"DINAlternate-Bold" size:19.0f],
+                                                           }];
+    [[UINavigationBar appearance] setBarStyle: UIBarStyleBlack];
+    [[UINavigationBar appearance] setTintColor:[UIColor yellowColor]];
+    [[UIBarButtonItem appearance] setTitleTextAttributes: @{
+                                          NSFontAttributeName:
+                                              [UIFont fontWithName:@"DINAlternate-Bold" size:18.0f],
+                                        }
+                              forState:UIControlStateNormal];
+ 
+    
+    
+    
     // Initialize HTTPClient
     NSURL *baseURL = [NSURL URLWithString:@"http://106.185.44.27:8080"];
     AFHTTPClient* client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
@@ -33,7 +52,7 @@
     NSError *error = nil;
     
     NSString *path = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"GiTizen.sqlite"];
-    //NSLog(@"%@", path);
+    NSLog(@"%@", path);
     objectManager.managedObjectStore = managedObjectStore;
     
     [objectManager.managedObjectStore addSQLitePersistentStoreAtPath:path fromSeedDatabaseAtPath:nil withConfiguration:nil options:nil error:&error];
@@ -74,7 +93,9 @@
                                                       @"gtid" : @"gtid",
                                                       @"username" : @"username",
                                                       @"fname" : @"firstname",
-                                                      @"lname" : @"lastname"
+                                                      @"lname" : @"lastname",
+                                                      @"email" : @"email",
+                                                      @"sign" : @"sign"
                                                       }];
     
     RKEntityMapping *joinMapping = [RKEntityMapping mappingForEntityForName:@"Join" inManagedObjectStore:managedObjectStore];
@@ -116,6 +137,14 @@
     
     [objectManager addResponseDescriptor:responseDescriptor_user];
     
+    RKResponseDescriptor *responseDescriptor_user_gtid = [RKResponseDescriptor responseDescriptorWithMapping:userMapping
+                                                                                                 method:RKRequestMethodGET
+                                                                                            pathPattern:@"/api/users/:gtid"
+                                                                                                keyPath:nil
+                                                                                            statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    
+    [objectManager addResponseDescriptor:responseDescriptor_user_gtid];
+    
     RKResponseDescriptor *responseDescriptor_join = [RKResponseDescriptor responseDescriptorWithMapping:joinMapping
                                                                                                  method:RKRequestMethodGET
                                                                                             pathPattern:@"/api/joins"
@@ -150,6 +179,9 @@
     
     RKRequestDescriptor *requestDescriptor_user = [RKRequestDescriptor requestDescriptorWithMapping:[userMapping inverseMapping] objectClass:[User class] rootKeyPath:nil method:RKRequestMethodPOST];
     [objectManager addRequestDescriptor:requestDescriptor_user];
+    
+    RKRequestDescriptor *requestDescriptor_user_gtid = [RKRequestDescriptor requestDescriptorWithMapping:[userMapping inverseMapping] objectClass:[User class] rootKeyPath:nil method:RKRequestMethodPUT];
+    [objectManager addRequestDescriptor:requestDescriptor_user_gtid];
     
     RKRequestDescriptor *requestDescriptor_join_post = [RKRequestDescriptor requestDescriptorWithMapping:[joinMapping inverseMapping] objectClass:[Join class] rootKeyPath:nil method:RKRequestMethodPOST];
     [objectManager addRequestDescriptor:requestDescriptor_join_post];

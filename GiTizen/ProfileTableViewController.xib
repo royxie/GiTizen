@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileTableViewController"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellName" id="x2S-4I-0dL" customClass="ProfileCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x2S-4I-0dL" id="jiq-VN-alG">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T0w-P3-aQ8">
+                        <rect key="frame" x="22" y="0.0" width="290" height="60"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="next"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="centerY" secondItem="T0w-P3-aQ8" secondAttribute="centerY" constant="-0.25" id="ema-ow-Ih1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="fieldName" destination="T0w-P3-aQ8" id="neE-6A-yr2"/>
+            </connections>
+            <point key="canvasLocation" x="-90" y="155"/>
+        </tableViewCell>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellButton" id="Atn-Em-cT3" customClass="ProfileCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Atn-Em-cT3" id="cLc-ns-0cT">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzj-jz-GsN">
+                        <rect key="frame" x="51" y="5" width="222" height="50"/>
+                        <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                        <state key="normal" title="Save">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="6"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="actionSave:" destination="-1" eventType="touchUpInside" id="JVs-x7-gxm"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="centerY" secondItem="kzj-jz-GsN" secondAttribute="centerY" id="Lio-do-ZDF"/>
+                    <constraint firstItem="kzj-jz-GsN" firstAttribute="leading" secondItem="cLc-ns-0cT" secondAttribute="leadingMargin" constant="43" id="NJp-VA-Kmm"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="kzj-jz-GsN" secondAttribute="trailing" constant="39" id="SW9-UB-xNa"/>
+                    <constraint firstItem="kzj-jz-GsN" firstAttribute="top" secondItem="cLc-ns-0cT" secondAttribute="topMargin" constant="-3" id="cW6-3c-SNx"/>
+                    <constraint firstAttribute="centerX" secondItem="kzj-jz-GsN" secondAttribute="centerX" constant="-2" id="eFo-l0-GtB"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="kzj-jz-GsN" secondAttribute="bottom" constant="-4" id="fmC-MT-pxJ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="-90" y="299"/>
+        </tableViewCell>
+    </objects>
+</document>

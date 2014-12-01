@@ -12,6 +12,8 @@
 #import <RestKit/RestKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <QuartzCore/QuartzCore.h>
+#import "ProgressHUD.h"
+
 
 @interface PostEventViewController ()<CLLocationManagerDelegate, UISearchBarDelegate >
 
@@ -34,6 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initField];
+    self.navigationItem.title = @"Post New Event";
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(postIt)];
     self.navigationItem.rightBarButtonItem = rightButton;
     [self.eventDatePicker addTarget:self action:@selector(datePickerChanged:) forControlEvents:UIControlEventValueChanged];
@@ -72,7 +75,6 @@
 }
 
 -(void)pickerDoneClicked {
-    //NSLog(@"Done Clicked");
     [self.categoryStr resignFirstResponder];
     //self.catPickerToolbar.hidden=YES;
     //self.catPicker.hidden=YES;
@@ -81,7 +83,6 @@
 - (void)initField
 {
     self.types = [NSArray arrayWithObjects:@"Reading", @"Bar", @"Hangout", @"Food", @"Sport", @"Concert", @"Hiking", @"Drama", nil];
-    
     self.eventToPost = [NSEntityDescription insertNewObjectForEntityForName:@"Event" inManagedObjectContext:[RKObjectManager sharedManager].managedObjectStore.persistentStoreManagedObjectContext];
     //UIImage *btnImage = [UIImage imageNamed:@"image.png"];
     //[self.searchButton setImage:btnImage forState:UIControlStateNormal];
@@ -136,11 +137,13 @@
     self.eventToPost.number_joined = [NSString stringWithFormat:@"%ld", (long)1];
     self.eventToPost.desc = self.descStr.text;
     
+    [ProgressHUD show:@"Please wait..."];
     [[RKObjectManager sharedManager]    postObject:self.eventToPost
                                               path:@"/api/events"
                                         parameters:nil
                                            success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                NSLog(@"Post succeeded");
+                                               [ProgressHUD showSuccess:@"Successfully posted"];
                                            }
                                            failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                NSLog(@"error occurred': %@", error);

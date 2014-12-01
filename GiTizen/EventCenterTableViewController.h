@@ -12,7 +12,8 @@
 #import "EventCenterTableViewCell.h"
 #import "DetailViewController.h"
 #import "NSString+FontAwesome.h"
+#import "utilities.h"
 
-@interface EventCenterTableViewController : UITableViewController
+@interface EventCenterTableViewController : UITableViewController<UIPickerViewDelegate,UIToolbarDelegate>
 
 @end

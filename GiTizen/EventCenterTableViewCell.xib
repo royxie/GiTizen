@@ -19,17 +19,17 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="L9y-66-MTe"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="number_of_peo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMJ-6y-FUb">
-                        <rect key="frame" x="376" y="60" width="34" height="21"/>
+                        <rect key="frame" x="375" y="60" width="34" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="uXn-rQ-erg"/>
                             <constraint firstAttribute="width" constant="34" id="ypY-tJ-ygt"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -53,13 +53,13 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="no.j" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMr-LA-spA">
-                        <rect key="frame" x="330" y="60" width="31" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no.j" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMr-LA-spA">
+                        <rect key="frame" x="331" y="60" width="31" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="APx-b0-Z9h"/>
                             <constraint firstAttribute="width" constant="31" id="nHv-fn-h38"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -68,12 +68,13 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="M3x-Ry-H38"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="vMJ-6y-FUb" secondAttribute="trailing" constant="1" id="0fp-Ry-nXV"/>
                     <constraint firstItem="MMr-LA-spA" firstAttribute="leading" secondItem="qqO-vV-EDv" secondAttribute="trailing" constant="8" id="1p1-n9-dhK"/>
                     <constraint firstItem="YL4-YA-P1d" firstAttribute="leading" secondItem="bio-zP-UbC" secondAttribute="trailing" constant="2" id="32d-fS-1t3"/>
                     <constraint firstItem="MMr-LA-spA" firstAttribute="centerY" secondItem="vMJ-6y-FUb" secondAttribute="centerY" id="C84-7j-b4b"/>
@@ -81,14 +82,19 @@
                     <constraint firstItem="bio-zP-UbC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-2" id="Kr9-BV-nJM"/>
                     <constraint firstItem="MMr-LA-spA" firstAttribute="centerY" secondItem="WZ8-ok-2X7" secondAttribute="centerY" id="PoA-Pf-qXs"/>
                     <constraint firstItem="qqO-vV-EDv" firstAttribute="leading" secondItem="bio-zP-UbC" secondAttribute="trailing" constant="2" id="SRW-76-PcH"/>
-                    <constraint firstItem="vMJ-6y-FUb" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="UKR-yK-5VN"/>
-                    <constraint firstItem="vMJ-6y-FUb" firstAttribute="leading" secondItem="WZ8-ok-2X7" secondAttribute="trailing" constant="-1" id="brm-3v-hw9"/>
+                    <constraint firstItem="vMJ-6y-FUb" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-1" id="UKR-yK-5VN"/>
+                    <constraint firstItem="vMJ-6y-FUb" firstAttribute="leading" secondItem="WZ8-ok-2X7" secondAttribute="trailing" constant="-2" id="brm-3v-hw9"/>
                     <constraint firstItem="bio-zP-UbC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="d3k-3n-Ybr"/>
                     <constraint firstItem="YL4-YA-P1d" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="ovI-5k-nvy"/>
                     <constraint firstAttribute="bottomMargin" secondItem="qqO-vV-EDv" secondAttribute="bottom" constant="12" id="rUQ-Ja-JhL"/>
                     <constraint firstItem="MMr-LA-spA" firstAttribute="centerY" secondItem="qqO-vV-EDv" secondAttribute="centerY" id="upn-O5-P5u"/>
                     <constraint firstItem="YL4-YA-P1d" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="14" id="vdd-R6-V8V"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="0fp-Ry-nXV"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="categoryLabel" destination="bio-zP-UbC" id="a1Y-hc-ce3"/>

@@ -12,6 +12,7 @@
 #import <RestKit/RestKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <QuartzCore/QuartzCore.h>
+#import "ProgressHUD.h"
 
 
 @interface UpdateEventViewController ()
@@ -35,6 +36,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self initField];
+    self.navigationItem.title = @"Update Event";
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Update" style:UIBarButtonItemStylePlain target:self action:@selector(putEvents)];
     self.navigationItem.rightBarButtonItem = rightButton;
     [self.myEventDatePicker addTarget:self action:@selector(datePickerChanged:) forControlEvents:UIControlEventValueChanged];
@@ -56,9 +58,7 @@
     self.catPickerToolbar.alpha = 0.7;
     [self.catPickerToolbar sizeToFit];
     
-    
     NSMutableArray *barItems = [[NSMutableArray alloc] init];
-    
     
     UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     
@@ -102,7 +102,6 @@
     [dateFormatter setDateFormat:@"MM-dd-yyyy HH:mm"];
     NSString *strDate = [dateFormatter stringFromDate:datePicker.date];
     self.eventToPut.starttime = strDate;
-    NSLog(@"date: %@", self.eventToPut.starttime);
 }
 
 #pragma mark - Managing the event item to update
@@ -148,12 +147,14 @@
     self.eventToPut.desc = self.descStr.text;
     //NSLog(@"eventToPut.category: %@, time: %@, number_of_peo: %@, gtid: %@", self.eventToPut.category, self.eventToPut.starttime, self.eventToPut.number_of_peo, self.eventToPut.gtid);
     
+    [ProgressHUD show:@"Please wait..."];
     NSString* path = [@"/api/events/" stringByAppendingString:self.eventToPut.object_id];
     [[RKObjectManager sharedManager]       putObject:self.eventToPut
                                                 path:path
                                           parameters:nil
                                              success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
                                                  NSLog(@"Successfully updated");
+                                                 [ProgressHUD showSuccess:@"Successfully updated"];
                                              }
                                              failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                  NSLog(@"error occurred': %@", error);
@@ -162,6 +163,7 @@
     NSArray* views = self.navigationController.viewControllers;
     [self.navigationController popToViewController: views[views.count-3] animated:YES];
 }
+
 /*
 #pragma mark - Navigation
 

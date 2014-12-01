@@ -7,6 +7,7 @@
 //
 
 #import "MyJoinedEventTableViewController.h"
+#import "ProgressHUD.h"
 
 @interface MyJoinedEventTableViewController ()
 
@@ -28,12 +29,12 @@
     [refreshControl addTarget:self action:@selector(refresh)forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     
-    self.navigationItem.title = @"My Joined Events";
+    self.navigationItem.title = @"My Join";
     
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filterEvents)];
     self.navigationItem.leftBarButtonItem = leftButton;
     
-    [self loadJoinedEvents];
+    //[self loadJoinedEvents];
 }
 
 -(void) init_field
@@ -42,6 +43,16 @@
     self.joinedEvents = [NSMutableArray new];
     self.p_events = [NSMutableArray new];
     self.l_events = [NSMutableArray new];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (ifUserLogin() == NO)
+        LoginUser(self);
+    
+    [self loadJoinedEvents];
+    [self.tableView reloadData];
 }
 
 - (void) filterEvents {
@@ -192,6 +203,7 @@
     NSString* userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userGTID"];
     NSString* myPath = [@"/api/joins/gtid/" stringByAppendingString:userid];
     
+    [ProgressHUD show:nil];
     [[RKObjectManager sharedManager] getObjectsAtPath:myPath
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
@@ -209,9 +221,11 @@
                                                           [self loadEvents: join.event_id inTotalNum: num];
                                                       }
                                                   }
+                                                  [ProgressHUD dismiss];
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   NSLog(@"error occurred': %@", error);
+                                                  [ProgressHUD showError:@"Network error."];
                                               }];
     
 }
@@ -219,6 +233,7 @@
 -(void)loadEvents: (NSString*)event_id inTotalNum: (int) numOfEvent
 {
     NSString* myPath = [@"/api/events/" stringByAppendingString:event_id];
+    
     [[RKObjectManager sharedManager] getObjectsAtPath:myPath
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
@@ -251,6 +266,7 @@
                                                           return [date2 compare:date1];
                                                       }];
                                                       [self.tableView reloadData];
+                                                      [ProgressHUD dismiss];
                                                   }
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {

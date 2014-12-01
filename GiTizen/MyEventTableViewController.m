@@ -7,6 +7,8 @@
 //
 
 #import "MyEventTableViewController.h"
+#import "ProgressHUD.h"
+
 
 @interface MyEventTableViewController ()
 
@@ -27,7 +29,7 @@
     [refreshControl addTarget:self action:@selector(refresh)forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refreshControl;
     
-    self.navigationItem.title = @"My Posted Events";
+    self.navigationItem.title = @"My Post";
     
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filterEvents)];
     self.navigationItem.leftBarButtonItem = leftButton;
@@ -35,13 +37,23 @@
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(postNewEvents)];
     self.navigationItem.rightBarButtonItem = rightButton;
     
-    [self loadEvents];
+    //[self loadEvents];
 }
 
 -(void) init_field {
     self.events = [NSMutableArray new];
     self.p_events = [NSMutableArray new];
     self.l_events = [NSMutableArray new];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (ifUserLogin() == NO)
+        LoginUser(self);
+    
+    [self loadEvents];
+    [self.tableView reloadData];
 }
 
 - (void) filterEvents {
@@ -201,7 +213,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [self deleteEvents:indexPath];
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -229,6 +241,8 @@
 {
     NSString* userid = [[NSUserDefaults standardUserDefaults] stringForKey:@"userGTID"];
     NSString* myPath = [@"/api/events/gtid/" stringByAppendingString:userid];
+    
+    [ProgressHUD show:nil];
     [[RKObjectManager sharedManager] getObjectsAtPath:myPath
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
@@ -263,22 +277,24 @@
                                                   }];
                                                   
                                                   [self.tableView reloadData];
+                                                  [ProgressHUD dismiss];
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   NSLog(@"error occurred': %@", error);
+                                                  [ProgressHUD showError:@"Network error."];
                                               }];
 }
 
 - (void)deleteEvents:(NSIndexPath *)indexPath
 {
-    Event *selectedEvent = self.events[indexPath.row];
+    Event *selectedEvent = self.l_events[indexPath.row];
     NSString* path = [@"/api/events/" stringByAppendingString:selectedEvent.object_id];
-    NSLog(@"%@", path);
-    [[RKObjectManager sharedManager]  deleteObject:NULL
+    //NSLog(@"%@", path);
+    [[RKObjectManager sharedManager]  deleteObject:selectedEvent
                                               path:path
                                         parameters:nil
                                            success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                               [self.events removeObjectAtIndex:indexPath.row];
+                                               [self.l_events removeObjectAtIndex:indexPath.row];
                                                [self.tableView reloadData];
                                                NSLog(@"Successfully deleted");
                                            }

@@ -7,6 +7,8 @@
 //
 
 #import "DetailViewController.h"
+#import "ProgressHUD.h"
+
 
 @interface DetailViewController ()
 
@@ -31,6 +33,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     [super viewDidLoad];
     
+    self.navigationItem.title = @"Event Details";
     UIBarButtonItem *joinButton = [[UIBarButtonItem alloc] initWithTitle:@"Join now!" style:UIBarButtonItemStylePlain target:self action:@selector(joinEvent)];
     UIBarButtonItem *quitButton = [[UIBarButtonItem alloc] initWithTitle:@"Quit" style:UIBarButtonItemStylePlain target:self action:@selector(quitEvent)];
     
@@ -63,6 +66,7 @@
     NSString* path = [[@"/api/joins/" stringByAppendingString:userid] stringByAppendingString:@"/"];
     path = [path stringByAppendingString:self.detailItem.object_id];
     
+    [ProgressHUD show:@"Please wait…"];
     [[RKObjectManager sharedManager]  deleteObject:NULL
                                               path:path
                                         parameters:nil
@@ -86,9 +90,12 @@
                                                   NSLog(@"num: %d", num);
                                                   event.number_joined = [NSString stringWithFormat:@"%ld", (long)(num-1)];
                                                   NSLog(@"no. of joined: %@", event.number_joined);
+                                                  [ProgressHUD showSuccess:@"Successfully quited"];
+                                                  /*
                                                   UIAlertView* quitSuccess = [[UIAlertView alloc] initWithTitle:@"Quit" message:@"Successfully quited" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                                                   [quitSuccess show];
                                                   [self.navigationController popViewControllerAnimated:YES];
+                                                   */
                                                   [self putEvent: event];
                                                   NSLog(@"joins successfully deleted");
                                               }
@@ -108,10 +115,14 @@
     NSString* myPath = [@"/api/joins/gtid/" stringByAppendingString:userid];
     NSString* object_id = self.detailItem.object_id;
     
+    [ProgressHUD show:@"Please wait…"];
     if ([userid isEqualToString: self.detailItem.gtid]) {
+        [ProgressHUD showSuccess:@"you have already joined this event"];
+        /*
         UIAlertView* joinSuccess = [[UIAlertView alloc] initWithTitle:@"Join" message:@"you have already joined this event" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [joinSuccess show];
         [self.navigationController popViewControllerAnimated:YES];
+         */
         return;
     }
     
@@ -124,9 +135,12 @@
                                                   BOOL join_flag = false;
                                                   for(Join* join in joinedEvents) {
                                                       if([join.event_id isEqualToString: object_id]) {
+                                                          [ProgressHUD showSuccess:@"you have already joined this event"];
+                                                          /*
                                                           UIAlertView* joinSuccess = [[UIAlertView alloc] initWithTitle:@"Join" message:@"you have already joined this event" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                                                           [joinSuccess show];
                                                           [self.navigationController popViewControllerAnimated:YES];
+                                                           */
                                                           join_flag = true;
                                                           break;
                                                       }
@@ -182,9 +196,12 @@
                                                       event.number_joined = [NSString stringWithFormat:@"%ld", (long)(num+1)];
                                                       NSLog(@"no. of joined: %@", event.number_joined);
                                                       [self putEvent: event];
+                                                      [ProgressHUD showSuccess:@"Successfully joined!"];
+                                                      /*
                                                       UIAlertView* joinSuccess = [[UIAlertView alloc] initWithTitle:@"Join" message:@"Successfully joined!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                                                       [joinSuccess show];
                                                       [self.navigationController popViewControllerAnimated:YES];
+                                                       */
                                                   }
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
@@ -231,7 +248,7 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
     [self.locationManager startUpdatingLocation];
-    CGRect  viewRect = CGRectMake(0, (self.view.frame.size.height)*2/3, (self.view.frame.size.width), (self.view.frame.size.height)/3);
+    CGRect  viewRect = CGRectMake(0, (self.view.frame.size.height)/2, (self.view.frame.size.width), (self.view.frame.size.height)/2);
     self.mapView                   = [[MKMapView alloc] initWithFrame:viewRect];
     self.mapView.delegate          = self;
     self.mapView.showsUserLocation = YES;

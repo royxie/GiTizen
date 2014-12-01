@@ -2,7 +2,7 @@
 //  User.m
 //  GiTizen
 //
-//  Created by XieShiyu on 26/10/14.
+//  Created by XieShiyu on 30/11/14.
 //  Copyright (c) 2014 Pangu. All rights reserved.
 //
 
@@ -15,5 +15,7 @@
 @dynamic gtid;
 @dynamic lastname;
 @dynamic username;
+@dynamic email;
+@dynamic sign;
 
 @end

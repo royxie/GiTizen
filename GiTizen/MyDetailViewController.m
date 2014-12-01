@@ -30,6 +30,8 @@
 - (void)viewDidLoad {
     // Do any additional setup after loading the view, typically from a nib.
     [super viewDidLoad];
+    
+    self.navigationItem.title = @"Event Details";
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(editEvent)];
     self.navigationItem.rightBarButtonItem = rightButton;
     [self configureView];
@@ -79,7 +81,7 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
     [self.locationManager startUpdatingLocation];
-    CGRect  viewRect = CGRectMake(0, (self.view.frame.size.height)*2/3, (self.view.frame.size.width), (self.view.frame.size.height)/3);
+    CGRect  viewRect = CGRectMake(0, (self.view.frame.size.height)/2, (self.view.frame.size.width), (self.view.frame.size.height)/2);
     self.mapView                   = [[MKMapView alloc] initWithFrame:viewRect];
     self.mapView.delegate          = self;
     self.mapView.showsUserLocation = YES;
